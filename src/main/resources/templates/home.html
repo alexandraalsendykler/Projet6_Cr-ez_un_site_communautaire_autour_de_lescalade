@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Homepage</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div>
+		<nav>
+			<nav class="navbar navbar-dark bg-dark">
+				<img th:src="@{/img/amisescalade.JPG}" width="170" alt=""
+					class="img-fluid d-inline-block align-middle mr-2">
+
+				<ul class="nav justify-content-end"</ul>
+				<li class="nav-item"><a class="nav-link active" href="#">Qui
+						sommes-nous ?</a></li>
+				<li class="nav-item"><a class="nav-link active" href="#">Nous
+						contacter</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Sites
+						d'escalade</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Connexion</a>
+				</li>
+			</nav>
+		</nav>
+	</div>
+<div class="row">
+	<div class="offset-sm-4 col-sm-4">
+	<div class="card border-dark" >
+		<div class="card-body">
+			<div class="card text-center">
+				<h5 class="titre table">Voies et cotations</h5>
+
+				<table class="table">
+
+					<tr>
+						<th>nom</th>
+						<th>cotation</th>
+					</tr>
+					<tr th:each="voie : ${voies}">
+						<td th:text="${voie.nom}">nom</td>
+						<td th:text="${voie.cotation}">cotation</td>
+						<td>
+					</tr>
+				</table>
+
+				</tr>
+				</table>
+</div>
+			</div>
+		</div></div>
+</body>
+</html>
