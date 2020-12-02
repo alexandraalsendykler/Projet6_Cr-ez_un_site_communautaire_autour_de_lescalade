@@ -17,6 +17,7 @@ import com.openclassrooms.climbing.repository.*;
 
 @Controller // suit le formalisme "rest" c'est un pattern pour faire communiquer des
 			// programmes ensembles
+
 public class ClimbingController {
 
 	@Autowired

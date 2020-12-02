@@ -51,6 +51,32 @@
 
 				</tr>
 				</table>
+				
+				</div>
+				
+		<div class="row">
+	<div class="offset-sm-4 col-sm-4">
+	<div class="card border-dark" >
+		<div class="card-body">
+			<div class="card text-center">
+				<h5 class="titre table">Sites coordonnées GPS et commentaires</h5>
+				
+				<table class="table">
+
+					<tr>
+						<th>nom</th>
+						<th>coordonneesgps</th>
+						
+					</tr>
+					<tr th:each="site : ${sites}">
+						<td th:text="${site.nom}">nom</td>
+						<td th:text="${site.coordonneesgps}">coordonneesgps</td>
+						<td>
+					</tr>
+				</table>
+
+				</tr>
+				</table>
 </div>
 			</div>
 		</div>
