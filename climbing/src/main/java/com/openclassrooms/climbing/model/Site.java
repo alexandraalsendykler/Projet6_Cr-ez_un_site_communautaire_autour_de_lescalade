@@ -42,7 +42,7 @@ public class Site {
 		this.id = id;
 	}
 
-	public String getCoordonneesgps() {
+	public String getcoordonneesgps() {
 		return coordonneesgps;
 	}
 
@@ -74,12 +74,12 @@ public class Site {
 		this.description = description;
 	}
 
-	public String getCoordonneesGps() {
+	public String getCoordonneesgps() {
 		return coordonneesgps;
 	}
 
-	public void setCoordonneesGps(String coordonneesGps) {
-		this.coordonneesgps = coordonneesGps;
+	public void setCoordonneesGps(String coordonneesgps) {
+		this.coordonneesgps = coordonneesgps;
 	}
 
 	public Boolean getOfficiel() {
