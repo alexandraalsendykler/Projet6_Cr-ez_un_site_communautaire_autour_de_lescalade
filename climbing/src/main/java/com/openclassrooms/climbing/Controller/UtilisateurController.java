@@ -29,6 +29,7 @@ public class UtilisateurController<User> {
 
 	}
 
+	
 	@GetMapping(value = "/inscription")
 	public String inscription(Model model) {
 		model.addAttribute("users", new Utilisateur());
