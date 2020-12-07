@@ -8,6 +8,43 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 </head>
-<body>Ici apparaitra le profil de l'utilisateur avec toutes ces informations !!!
+<body>
+
+<div class="row align-items-center">
+		<div class="container">
+			<div class="col-sm-6 offset-sm-3">
+				<div class="card text-center">
+					<div class="card-header">
+						<h2 class="font-weight-bold">Bienvenue sur votre profil !</h2>
+					</div>
+					
+					<a href="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DAJava_P6/blog_escalade/blog.html#">
+  Envie d'en savoir plus ? Visitez notre partenaire !
+</a>
+					</div>
+<div class="row" style = "margin-top:15px">
+	<div class="offset-sm-3 col-sm-6">
+	<div class="card border-dark" >
+		<div class="card-body">
+			<div class="card text-center">
+				<h5 class="titre table">Topo et régions</h5>
+
+				<table class="table">
+
+					<tr>
+						<th>region</th>
+						<th>disponibilite</th>
+					</tr>
+					<tr th:each="topo : ${topos}">
+						<td th:text="${topo.region}">region</td>
+						<td th:text="${topo.disponibilite}">cotation</td>
+						<td>
+					</tr>
+				</table>
+
+				</tr>
+				</table>
+				
+				</div>
 </body>
 </html>

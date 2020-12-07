@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
+import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.repository.UserRepository;
 
 @Controller
@@ -23,8 +25,14 @@ public class UtilisateurController<User> {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private TopoRepository topoRepository;
+	
 	@GetMapping(value = "/profil")
 	public String profilUtilisateur(Model model) {
+
+		Iterable<Topo> topos = topoRepository.findAll();
+		model.addAttribute("topos", topos);
 		return "profilUtilisateur";
 
 	}

@@ -9,7 +9,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div>
+
 		<nav>
 			<nav class="navbar navbar-dark bg-dark">
 				<img th:src="@{/img/amisescalade.JPG}" width="170" alt=""
@@ -22,22 +22,21 @@
 						contacter</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Sites
 						d'escalade</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:9001/inscription">S'inscrire</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Connexion</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:9001/connexion">Connexion</a>
 				</li>
 			</nav>
 		</nav>
-	</div>
+
 <div class="row">
-	<div class="offset-sm-4 col-sm-4">
-	<div class="card border-dark" >
-		<div class="card-body">
-			<div class="card text-center">
-				<h5 class="titre table">Voies et cotations</h5>
-
+	<div class=" col-sm-6">
+		<div class="card border-dark" >
+			<div class="card-body">
+				<div class="text-center">
+					<h5 class="titre table">Voies et cotations</h5>
+				</div>
 				<table class="table">
-
 					<tr>
 						<th>nom</th>
 						<th>cotation</th>
@@ -48,19 +47,15 @@
 						<td>
 					</tr>
 				</table>
-
-				</tr>
-				</table>
-				
+			</div>
+		</div>
+	</div>
+	<div class=" col-sm-6">
+		<div class="card border-dark" >
+			<div class="card-body">
+				<div class="text-center">
+					<h5 class="titre table">Sites coordonnées GPS et commentaires</h5>
 				</div>
-				
-		<div class="row">
-	<div class="offset-sm-4 col-sm-4">
-	<div class="card border-dark" >
-		<div class="card-body">
-			<div class="card text-center">
-				<h5 class="titre table">Sites coordonnées GPS et commentaires</h5>
-				
 				<table class="table">
 
 					<tr>
@@ -70,16 +65,15 @@
 					</tr>
 					<tr th:each="site : ${sites}">
 						<td th:text="${site.nom}">nom</td>
-						<td th:text="${site.coordonneesgps}">coordonneesgps</td>
+						<td th:text="${site.coordonneesgps}">coordonnees gps</td>
 						<td>
 					</tr>
 				</table>
-
-				</tr>
-				</table>
-</div>
 			</div>
 		</div>
-		</div>
+	</div>
+</div>	
+
+
 </body>
 </html>
