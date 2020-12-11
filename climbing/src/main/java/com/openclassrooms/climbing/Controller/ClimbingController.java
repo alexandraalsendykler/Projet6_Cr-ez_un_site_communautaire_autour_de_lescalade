@@ -72,7 +72,7 @@ public class ClimbingController {
 		return "home";
 	}
 	
-	@GetMapping(value ="/information")
-	public String information(Model model) {
-	return ("information");}
+	@GetMapping(value ="/aPropos")
+	public String aPropos(Model model) {
+	return ("aPropos");}
 }
