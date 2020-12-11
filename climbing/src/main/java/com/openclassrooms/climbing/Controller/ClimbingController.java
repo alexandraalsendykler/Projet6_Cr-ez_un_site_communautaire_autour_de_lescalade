@@ -46,7 +46,7 @@ public class ClimbingController {
 	public String home(Model model) {
 		Iterable<Utilisateur> users = userRepository.findAll();
 		model.addAttribute("users", users);
-
+		
 		Iterable<Commentaire> commentaires = commentaireRepository.findAll();
 		model.addAttribute("commentaires", commentaires);
 
@@ -71,4 +71,8 @@ public class ClimbingController {
 
 		return "home";
 	}
+	
+	@GetMapping(value ="/information")
+	public String information(Model model) {
+	return ("information");}
 }
