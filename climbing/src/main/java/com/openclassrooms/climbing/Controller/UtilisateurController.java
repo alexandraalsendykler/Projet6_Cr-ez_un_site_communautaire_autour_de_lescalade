@@ -2,7 +2,7 @@ package com.openclassrooms.climbing.Controller;
 
 import java.util.Arrays;
 import java.util.List;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,10 +27,11 @@ public class UtilisateurController<User> {
 
 	@Autowired
 	private TopoRepository topoRepository;
-	
-	@GetMapping(value = "/profil")
-	public String profilUtilisateur(Model model) {
 
+	@GetMapping(value = "/profil")
+	public String profilUtilisateur(Model model, HttpSession session) {
+		Utilisateur connectedUser = (Utilisateur) session.getAttribute("user");
+		System.out.println(connectedUser.getPseudo());
 		Iterable<Topo> topos = topoRepository.findAll();
 		model.addAttribute("topos", topos);
 		return "profilUtilisateur";
@@ -62,7 +63,7 @@ public class UtilisateurController<User> {
 	}
 
 	@PostMapping("/seConnecter")
-	public ModelAndView seConnecter(@ModelAttribute Utilisateur users, ModelMap model) {
+	public ModelAndView seConnecter(@ModelAttribute Utilisateur users, ModelMap model, HttpSession session) {
 		String email = users.getEmail();
 		String password = users.getMotdepasse();
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -70,8 +71,9 @@ public class UtilisateurController<User> {
 		for (Utilisateur utilisateur : utilisateurs) {
 			boolean isPasswordMatch = encoder.matches(password, utilisateur.getMotdepasse());
 			if (isPasswordMatch == true) {
-				return new ModelAndView("redirect:/");
-			//	return new ModelAndView("redirect:/profilUtilisateur");
+				session.setAttribute("user", utilisateur);
+				return new ModelAndView("redirect:/profil");
+
 			} else {
 				model.addAttribute("seConnecterErreur", true);
 			}

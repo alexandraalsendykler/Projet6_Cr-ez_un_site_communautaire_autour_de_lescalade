@@ -3,7 +3,12 @@ package com.openclassrooms.climbing.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.openclassrooms.climbing.model.Commentaire;
 import com.openclassrooms.climbing.model.Longueur;
@@ -62,6 +67,7 @@ public class ClimbingController {
 
 		Iterable<Longueur> longueurs = longueurRepository.findAll();
 		model.addAttribute("longueurs", longueurs);
+
 
 		return "home";
 	}
