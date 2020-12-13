@@ -75,4 +75,9 @@ public class ClimbingController {
 	@GetMapping(value ="/aPropos")
 	public String aPropos(Model model) {
 	return ("aPropos");}
+	
+	@GetMapping(value="deconnexion")
+	public String deconnexionProfil(Model model) {
+	return ("deconnexion");
+	}
 }
