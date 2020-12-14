@@ -18,6 +18,7 @@ public class Utilisateur {
 	private Boolean membre;
 	private String email;
 	private String motdepasse;
+	
 
 	public Integer getId() {
 		return id;

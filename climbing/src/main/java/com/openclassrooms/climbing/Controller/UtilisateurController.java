@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.openclassrooms.climbing.model.Topo;
@@ -20,6 +21,7 @@ import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.repository.UserRepository;
 
 @Controller
+@SessionAttributes
 public class UtilisateurController<User> {
 
 	@Autowired
@@ -31,11 +33,11 @@ public class UtilisateurController<User> {
 	@GetMapping(value = "/profil")
 	public String profilUtilisateur(Model model, HttpSession session) {
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("user");
+		model.addAttribute("connectedUser", connectedUser);
 		System.out.println(connectedUser.getPseudo());
-		Iterable<Topo> topos = topoRepository.findAll();
+		Iterable<Topo> topos = topoRepository.findByUtilisateur(connectedUser);
 		model.addAttribute("topos", topos);
 		return "profilUtilisateur";
-
 	}
 
 	@GetMapping(value = "/inscription")
@@ -80,4 +82,6 @@ public class UtilisateurController<User> {
 		}
 		return new ModelAndView("redirect:/connexion", model);
 	}
+	
+	
 }
