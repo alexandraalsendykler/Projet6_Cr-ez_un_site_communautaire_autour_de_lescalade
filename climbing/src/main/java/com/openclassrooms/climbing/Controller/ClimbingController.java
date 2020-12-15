@@ -46,7 +46,7 @@ public class ClimbingController {
 	public String home(Model model) {
 		Iterable<Utilisateur> users = userRepository.findAll();
 		model.addAttribute("users", users);
-		
+
 		Iterable<Commentaire> commentaires = commentaireRepository.findAll();
 		model.addAttribute("commentaires", commentaires);
 
@@ -68,16 +68,24 @@ public class ClimbingController {
 		Iterable<Longueur> longueurs = longueurRepository.findAll();
 		model.addAttribute("longueurs", longueurs);
 
-
 		return "home";
 	}
-	
-	@GetMapping(value ="/aPropos")
+
+	@GetMapping(value = "/aPropos")
 	public String aPropos(Model model) {
-	return ("aPropos");}
-	
-	@GetMapping(value="deconnexion")
+		return ("aPropos");
+	}
+
+	@GetMapping(value = "/deconnexion")
 	public String deconnexionProfil(Model model) {
-	return ("deconnexion");
+		return ("deconnexion");
+
+	}
+
+	@GetMapping(value="/recherchesites")
+	public String rechercheSites(Model model,@RequestParam String searchsites) {
+		List<Site> sites = siteRepository.findByNomContaining(searchsites);	
+		model.addAttribute("sites", sites);
+	return ("rechercheSites");
 	}
 }
