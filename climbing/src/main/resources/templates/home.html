@@ -24,19 +24,21 @@
 				href="http://localhost:9001/connexion">Connexion</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="#">Nous
 					contacter</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Les
+					sites d'escalades</a></li>
 		</ul>
 
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
 	<div class="col-sm-6 offset-sm-3">
-	<form action="/recherchesites" method="get">
-		<h3>Vous recherchez un site d'escalade en particulier ? Utilisez
-			le moteur de recherche !</h3>
+		<form action="/recherchesites" method="get">
+			<h3>Vous recherchez un site d'escalade en particulier ? Utilisez
+				le moteur de recherche !</h3>
 
-		<input class="form-control mr-sm-2" type="text" name="searchsites"
-			placeholder="Rechercher" aria-label="Rechercher">
-		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
+			<input class="form-control mr-sm-2" type="text" name="searchsites"
+				placeholder="Rechercher" aria-label="Rechercher">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
 		</form>
 	</div>
 

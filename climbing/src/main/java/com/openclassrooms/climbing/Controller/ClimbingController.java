@@ -88,4 +88,31 @@ public class ClimbingController {
 		model.addAttribute("sites", sites);
 	return ("rechercheSites");
 	}
+	
+	@GetMapping(value="/sitesescalades")
+	public String sitesescaldes(Model model) {
+		Iterable<Site> site = siteRepository.findAll();
+		model.addAttribute("sites", site);
+		return("sitesescalades");
+	}
+	
+	@GetMapping(value="/site")
+	public String site(Model model) {
+		return("site");
+	}
+	
+	@GetMapping(value="/secteur")
+	public String secteur(Model model) {
+		return("secteur");
+	}
+	
+	@GetMapping(value="/voie")
+	public String voie(Model model) {
+	return("voie");	
+	}
+	
+	@GetMapping(value="longueur")
+	public String longueur(Model model) {
+	return("longueur");
+	}
 }
