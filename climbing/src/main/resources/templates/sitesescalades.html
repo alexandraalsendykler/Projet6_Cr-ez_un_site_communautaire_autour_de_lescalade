@@ -25,6 +25,9 @@
 				href="http://localhost:9001/connexion">Connexion</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="#">Nous
 					contacter</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/sitesescalades">Les sites
+					d'escalades</a></li>
 		</ul>
 
 	</nav>
@@ -45,8 +48,11 @@
 
 							</tr>
 							<tr th:each="site: ${sites}">
-								<td th:text="${site.nom}">nom</td>
+								<td><a th:href="@{'/site/'+${site.id}}"
+									th:text="${site.nom}">nom</a></td>
 								<td th:text="${site.officiel}">officiel</td>
+
+
 							</tr>
 						</table>
 

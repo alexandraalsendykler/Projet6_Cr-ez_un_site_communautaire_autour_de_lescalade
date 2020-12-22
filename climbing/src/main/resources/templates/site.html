@@ -33,10 +33,17 @@
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div
-		class="container width:350px; border:1px solid black; padding:12px"></div>
-		
-	<div class="col align-self-start"><h4>Sites</h4></div>
-	
+	<div class="container"
+		style="width: 350px; border: 1px solid black; padding: 12px; margin-top:15px">
+
+		<div class="col align-self-start">
+		<div th:each="site: ${sites}">
+			<h4 th:text="${site.nom}"></h4>
+			
+			</div>
+		</div>
+
+	</div>
+
 </body>
 </html>

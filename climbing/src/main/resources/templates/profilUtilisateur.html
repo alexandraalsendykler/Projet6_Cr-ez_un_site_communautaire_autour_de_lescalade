@@ -18,9 +18,8 @@
   			<li class="nav-item">
    			<a class="nav-link text-dark" href="http://localhost:9001/aPropos">A propos</a>
   			</li>
-  			<li class="nav-item">
-    		<a class="nav-link text-dark" href="http://localhost:9001/inscription">Inscription</a>
-  			</li>
+  			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/inscription">Inscription</a></li>
   			<li class="nav-item">
     		<a class="nav-link text-dark" href="http://localhost:9001/deconnexion">Déconnexion</a>
   			</li>
@@ -38,12 +37,8 @@
 				<div class="card text-center">
 					<div class="card-header">
 						<h2 class="font-weight-bold">Bienvenue sur votre profil <span th:utext="${connectedUser.pseudo}"></span> !</h2>
-					</div>
-					
-					<a href="https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DAJava_P6/blog_escalade/blog.html#">
-  Envie d'en savoir plus ? Visitez notre partenaire !
-</a>
-					</div>
+					</div>			
+
 <div class="row" style = "margin-top:15px">
 	<div class="offset-sm-3 col-sm-6">
 	<div class="card border-dark" >

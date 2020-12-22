@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +20,7 @@ import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 import com.openclassrooms.climbing.model.Voie;
 import com.openclassrooms.climbing.repository.*;
+import com.openclassrooms.climbing.service.ISiteService;
 
 @Controller // suit le formalisme "rest" c'est un pattern pour faire communiquer des
 			// programmes ensembles
@@ -41,6 +43,8 @@ public class ClimbingController {
 	private VoieRepository voieRepository;
 	@Autowired
 	private LongueurRepository longueurRepository;
+	@Autowired
+	private ISiteService siteService;
 
 	@GetMapping(value = "/")
 	public String home(Model model) {
@@ -82,37 +86,39 @@ public class ClimbingController {
 
 	}
 
-	@GetMapping(value="/recherchesites")
-	public String rechercheSites(Model model,@RequestParam String searchsites) {
-		List<Site> sites = siteRepository.findByNomContaining(searchsites);	
+	@GetMapping(value = "/recherchesites")
+	public String rechercheSites(Model model, @RequestParam String searchsites) {
+		List<Site> sites = siteRepository.findByNomContaining(searchsites);
 		model.addAttribute("sites", sites);
-	return ("rechercheSites");
+		return ("rechercheSites");
 	}
-	
-	@GetMapping(value="/sitesescalades")
+
+	@GetMapping(value = "/sitesescalades")
 	public String sitesescaldes(Model model) {
 		Iterable<Site> site = siteRepository.findAll();
 		model.addAttribute("sites", site);
-		return("sitesescalades");
+		return ("sitesescalades");
 	}
-	
-	@GetMapping(value="/site")
-	public String site(Model model) {
-		return("site");
+
+	@RequestMapping(path = "/site/{id}")
+	public String site(Model model, @PathVariable("id") Integer id) {
+		Optional<Site> site = siteService.findById(id);
+		model.addAttribute("sites", site.get());
+		return ("site");
 	}
-	
-	@GetMapping(value="/secteur")
+
+	@GetMapping(value = "/secteur")
 	public String secteur(Model model) {
-		return("secteur");
+		return ("secteur");
 	}
-	
-	@GetMapping(value="/voie")
+
+	@GetMapping(value = "/voie")
 	public String voie(Model model) {
-	return("voie");	
+		return ("voie");
 	}
-	
-	@GetMapping(value="longueur")
+
+	@GetMapping(value = "longueur")
 	public String longueur(Model model) {
-	return("longueur");
+		return ("longueur");
 	}
 }
