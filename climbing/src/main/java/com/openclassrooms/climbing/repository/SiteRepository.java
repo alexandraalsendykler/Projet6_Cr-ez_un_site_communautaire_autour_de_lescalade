@@ -12,5 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface SiteRepository extends JpaRepository<Site, Integer> {
 
 	List <Site> findByNomContaining(String nom);
+	List<Site> findByNomContainingAndOfficiel(String nom, Boolean officiel);
 
 }

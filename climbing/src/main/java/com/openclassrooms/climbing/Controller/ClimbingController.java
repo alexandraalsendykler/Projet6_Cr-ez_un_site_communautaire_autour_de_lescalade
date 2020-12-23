@@ -87,10 +87,16 @@ public class ClimbingController {
 	}
 
 	@GetMapping(value = "/recherchesites")
-	public String rechercheSites(Model model, @RequestParam String searchsites) {
-		List<Site> sites = siteRepository.findByNomContaining(searchsites);
-		model.addAttribute("sites", sites);
-		model.addAttribute("officiel",true);
+	public String rechercheSites(Model model, @RequestParam String searchsites, @RequestParam Boolean officiel) {
+		if (officiel == true) {
+			List<Site> sites = siteRepository.findByNomContainingAndOfficiel(searchsites, officiel);
+			model.addAttribute("sites", sites);
+		} else {
+
+			List<Site> sites = siteRepository.findByNomContaining(searchsites);
+			model.addAttribute("sites", sites);
+		}
+
 		return ("rechercheSites");
 	}
 
@@ -122,11 +128,11 @@ public class ClimbingController {
 	public String longueur(Model model) {
 		return ("longueur");
 	}
-	
-	@GetMapping(value="topo")
+
+	@GetMapping(value = "topo")
 	public String topo(Model model) {
 		Iterable<Topo> topo = topoRepository.findAll();
 		model.addAttribute("topos", topo);
-		return("topo");
+		return ("topo");
 	}
 }
