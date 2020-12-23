@@ -34,7 +34,7 @@
 			</nav>
 				<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="row align-items-center">
+	<div class="row" style="margin-top: 15px">
 		<div class="container">
 			<div class="col-sm-6 offset-sm-3">
 				<div class="card text-center">
@@ -43,8 +43,6 @@
 					</div>
 					<div class="card-body">
 
-					<img th:src="@{/img/amisescalade.JPG}" width="170" alt=""
-					class="img-fluid" >
 					<form method="post" th:action="@{/saveinscription}" th:object="${users}">
 							<div class="form-group">
 								<label for="InputEmail">Adresse email</label> <input

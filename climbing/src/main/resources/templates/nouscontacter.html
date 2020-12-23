@@ -31,6 +31,50 @@
 
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
+	
+	<div class="row align-items-center">
+		<div class="container">
+			<div class="col-sm-6 offset-sm-3">
+				<div class="card text-center">
+					<div class="card-header">
+						<h2 class="font-weight-bold">Inscription</h2>
+					</div>
+					<div class="card-body">
+
+					<img th:src="@{/img/amisescalade.JPG}" width="170" alt=""
+					class="img-fluid" >
+					<form method="post" th:action="@{/saveinscription}" th:object="${users}">
+							<div class="form-group">
+								<label for="InputEmail">Adresse email</label> <input
+									type="email" class="form-control" id="email"
+									aria-describedby="emailHelp" th:field="*{email}">
+
+							</div>
+									
+									<div class="form-group">
+								<label for="InputPassword">Mot de passe </label> <input type="password" class="form-control"
+									id="password" th:field="*{motdepasse}"> 
+									   
+							</div>
+							
+							<div class="form-group">
+								<label for="imputPseudo">Pseudo</label> <input
+									type="text" class="form-control" id="pseudo" th:field="*{pseudo}">
+									
+									</div>
+							
+							<button type="submit" class="btn btn-primary">Envoyer</button>
+							<small class="form-text text-muted">Votre vie privée est
+								très importante pour nous, nous ne partageons pas vos données
+								avec des tierces !</small>
+								
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    
+</form>
 
 </body>
 </html>
