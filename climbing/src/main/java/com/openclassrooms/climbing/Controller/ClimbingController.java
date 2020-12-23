@@ -135,4 +135,9 @@ public class ClimbingController {
 		model.addAttribute("topos", topo);
 		return ("topo");
 	}
+	
+	@GetMapping(value="nouscontacter")
+	public String nouscontacter (Model model) {
+		return("nouscontacter");
+	}
 }

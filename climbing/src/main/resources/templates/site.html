@@ -23,8 +23,8 @@
 				href="http://localhost:9001/inscription">Inscription</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/connexion">Connexion</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="#">Nous
-					contacter</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/nouscontacter">Nous contacter</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/sitesescalades">Les sites
 					d'escalades</a></li>
@@ -34,12 +34,12 @@
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
 	<div class="container"
-		style="width: 350px; border: 1px solid black; padding: 12px; margin-top:15px">
+		style="width: 350px; border: 1px solid black; padding: 12px; margin-top: 15px">
 
 		<div class="col align-self-start">
-		<div th:each="site: ${sites}">
-			<h4 th:text="${site.nom}"></h4>
-			
+			<div th:each="site: ${sites}">
+				<h4 th:text="${site.nom}"></h4>
+
 			</div>
 		</div>
 
