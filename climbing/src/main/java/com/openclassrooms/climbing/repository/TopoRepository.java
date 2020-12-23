@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface TopoRepository extends JpaRepository<Topo, Integer> {
 	
 	List <Topo> findByUtilisateur(Utilisateur utilisateur);
-	
+
 
 }

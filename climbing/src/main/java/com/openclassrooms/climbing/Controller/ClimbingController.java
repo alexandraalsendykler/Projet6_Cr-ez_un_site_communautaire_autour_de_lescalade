@@ -90,6 +90,7 @@ public class ClimbingController {
 	public String rechercheSites(Model model, @RequestParam String searchsites) {
 		List<Site> sites = siteRepository.findByNomContaining(searchsites);
 		model.addAttribute("sites", sites);
+		model.addAttribute("officiel",true);
 		return ("rechercheSites");
 	}
 
@@ -120,5 +121,12 @@ public class ClimbingController {
 	@GetMapping(value = "longueur")
 	public String longueur(Model model) {
 		return ("longueur");
+	}
+	
+	@GetMapping(value="topo")
+	public String topo(Model model) {
+		Iterable<Topo> topo = topoRepository.findAll();
+		model.addAttribute("topos", topo);
+		return("topo");
 	}
 }
