@@ -1,5 +1,6 @@
 package com.openclassrooms.climbing.repository;
 
+import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface TopoRepository extends JpaRepository<Topo, Integer> {
 	
 	List <Topo> findByUtilisateur(Utilisateur utilisateur);
-
+	List <Topo> findAllBySites(Site site);
 
 }

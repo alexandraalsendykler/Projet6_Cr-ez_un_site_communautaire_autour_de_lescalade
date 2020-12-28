@@ -44,7 +44,7 @@
 				<th>Description</th>
 			</tr>
 			<tr th:each="site: ${sites}">
-				<td th:text="${site.nom}">Nom</td>
+				<td><a th:href="@{'/site/'+${site.id}}" th:text="${site.nom}">nom</a></td>
 				<td th:text="${site.coordonneesgps}">Coordonnées GPS</td>
 				<td th:text="${site.description}">Description</td>
 				<td>

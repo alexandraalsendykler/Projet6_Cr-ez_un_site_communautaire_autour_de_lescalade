@@ -32,20 +32,20 @@
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="col-sm-6 offset-sm-3">
-		<form action="/recherchesites" method="get">
-			<h3>Vous recherchez un site d'escalade en particulier ? Utilisez
-				le moteur de recherche !</h3>
+	<div class="row" style="margin-top: 15px">
+		<div class="col-sm-6 offset-sm-3">
+			<form action="/recherchesites" method="get">
+				<h3>Vous recherchez un site d'escalade en particulier ?
+					Utilisez le moteur de recherche !</h3>
 
-			<input class="form-control mr-sm-2" type="text" name="searchsites"
-				placeholder="Rechercher" aria-label="Rechercher">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
-			<label> <input type="checkbox" name="officiel" /> Membre
-				officiel les amis de l'escalade
-			</label>
-		</form>
+				<input class="form-control mr-sm-2" type="text" name="searchsites"
+					placeholder="Rechercher" aria-label="Rechercher">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
+				<label> <input type="checkbox" name="officiel" /> Membre
+					officiel les amis de l'escalade
+				</label>
+			</form>
 
-	</div>
-
+		</div>
 </body>
 </html>

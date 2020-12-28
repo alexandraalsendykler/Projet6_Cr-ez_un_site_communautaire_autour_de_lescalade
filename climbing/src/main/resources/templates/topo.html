@@ -32,23 +32,16 @@
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="col-sm-6 offset-sm-3">
+	<div class="container"
+		style="width: 350px; border: 1px solid black; padding: 12px; margin-top: 15px">
 
-		<table class="table">
+		<div class="col align-self-start">
+			<div th:each="topo: ${topos}">
+			<td><a th:href="@{'/topo/'+${topo.id}}"></a>
+				<h4 th:text="${topo.nom}"></h4>
 
-			<tr>
-				<th>Region</th>
-				<th>Disponibilité</th>
-
-			</tr>
-			<tr th:each="topo: ${topos}">
-				<td th:text="${topo.region}">Région</td>
-				<td th:text="${topo.disponibilite}">Disponibilité</td>
-			</tr>
-		</table>
-
-		</tr>
-		</table>
+			</div>
+		</div>
 
 	</div>
 </body>

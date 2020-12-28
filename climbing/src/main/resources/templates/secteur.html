@@ -34,5 +34,22 @@
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
+	<table class="table">
+
+		<tr>
+			<th>Nom</th>
+			<th>Nombre de points</th>
+		</tr>
+		<tr th:each="secteur: ${secteur}">
+			<td th:text="${secteur.nom}">Nom</td>
+			<td th:text="${secteur.nombredepoint}">Nombre de points</td>
+
+			<td>
+		</tr>
+	</table>
+
+	</tr>
+	</table>
+
 </body>
 </html>

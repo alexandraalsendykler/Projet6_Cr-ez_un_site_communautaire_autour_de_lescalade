@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,6 +23,27 @@ public class Voie {
 	@JoinColumn(name="idVoie")
 	private List<Longueur> longueurs;
 	
+	@ManyToOne
+	@JoinColumn(name = "idSecteur")
+	private Secteur secteurs;
+	
+	
+	public Secteur getSecteurs() {
+		return secteurs;
+	}
+
+	public void setSecteurs(Secteur secteurs) {
+		this.secteurs = secteurs;
+	}
+
+	public Integer getNombredepoint() {
+		return nombredepoint;
+	}
+
+	public void setNombredepoint(Integer nombredepoint) {
+		this.nombredepoint = nombredepoint;
+	}
+
 	private String nom;
 	private String cotation;
 	private Float hauteur;

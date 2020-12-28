@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,11 +17,15 @@ public class Secteur {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idSecteur")
 	private Integer id;
-	
+
 	@OneToMany
 	@JoinColumn(name = "idSecteur")
 	private List<Voie> voies;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "idSite")
+	private Site sites;
+
 	private String nom;
 
 	public List<Voie> getVoies() {
@@ -37,6 +42,22 @@ public class Secteur {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Site getSite() {
+		return sites;
+	}
+
+	public void setSite(Site sites) {
+		this.sites = sites;
 	}
 
 }

@@ -33,17 +33,68 @@
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="container"
-		style="width: 350px; border: 1px solid black; padding: 12px; margin-top: 15px">
+	<div class="container" >
+		<div class="row" style="margin-top:30px;">
+			<div class="col-sm-4">
+				<div class="card" th:each="site: ${sites}">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${site.nom}">Nom</h5>
+						<h6 class="card-subtitle mb-2 text-muted"
+							th:if="${site.officiel == true}">Officiel</h6>
+						<h6 class="card-subtitle mb-2 text-muted"
+							th:unless="${site.officiel == true}">Non officiel</h6>
+						<p class="card-text">
+							<strong>Description : </strong><span
+								th:text="${site.description}">GPS</span>
+						</p>
+						<p class="card-text">
+							<strong>Coordonnées GPS : </strong><span
+								th:text="${site.coordonneesgps}">GPS</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="card" th:each="secteur: ${secteurs}">
+					<div class="card-body">
+						<h5 class="card-title">Secteur</h5>
+						<div th:each="secteur: ${secteurs}">
 
-		<div class="col align-self-start">
-			<div th:each="site: ${sites}">
-				<h4 th:text="${site.nom}"></h4>
+							<h6 class="card-subtitle mb-2 text-muted"
+								th:text="${secteur.nom}">nom</h6>
+							<p class="card-text">
+								<strong>Voies : </strong>
+							<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">Nom</th>
+										<th scope="col">Cotation</th>
+										<th scope="col">Hauteur</th>
+										<th scope="col">Nombre de point</th>
+										<th scope="col">Longueur</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="voie: ${secteur.voies}">
+										<td th:text="${voie.nom}" scope="row"></td>
+										<td th:text="${voie.cotation}"></td>
+										<td th:text="${voie.hauteur}"></td>
+										<td th:text="${voie.nombredepoint}"></td>
+										<td>
+											<ul th:each="longueur: ${voie.longueurs}">
+												<li th:text="${longueur.cotation}"></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</p>
 
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
 	</div>
-
 </body>
 </html>
