@@ -116,9 +116,6 @@ public class ClimbingController {
 		List<Secteur> secteur = secteurRepository.findBySites(site.get());
 		model.addAttribute("secteurs", secteur);
 
-	
-		//	List<Voie> voie= voieRepository.findBySecteurs(secteur);
-	//	model.addAttribute("voies", voie);
 		return ("site");
 	}
 

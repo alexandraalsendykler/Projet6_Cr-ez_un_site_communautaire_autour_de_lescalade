@@ -44,14 +44,16 @@
 
 							<tr>
 								<th>Nom</th>
+								<th>Description</th>
 								<th>Officiel</th>
 
 							</tr>
 							<tr th:each="site: ${sites}">
 								<td><a th:href="@{'/site/'+${site.id}}"
-									th:text="${site.nom}">nom</a></td>
-								<td th:text="${site.officiel}">officiel</td>
-
+									th:text="${site.nom}">Nom</a></td>
+									<td th:text="${site.description}">Description</td>
+								<td th:if="${site.officiel == true}">Oui</td>
+								<td	th:unless="${site.officiel == true}">Non</h6></td>
 
 							</tr>
 						</table>
