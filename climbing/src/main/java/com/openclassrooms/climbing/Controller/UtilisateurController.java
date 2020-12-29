@@ -83,5 +83,10 @@ public class UtilisateurController<User> {
 		return new ModelAndView("redirect:/connexion", model);
 	}
 	
+	@GetMapping(value = "/deconnexion")
+	public String deconnexionProfil(Model model) {
+		return ("deconnexion");
+
+	}
 	
 }
