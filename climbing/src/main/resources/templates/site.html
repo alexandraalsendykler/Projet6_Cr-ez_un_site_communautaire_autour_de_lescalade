@@ -28,13 +28,15 @@
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/sitesescalades">Les sites
 					d'escalades</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/touslestopos">Tous les topos</a></li>
 		</ul>
 
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="container" >
-		<div class="row" style="margin-top:30px;">
+	<div class="container">
+		<div class="row" style="margin-top: 30px;">
 			<div class="col-sm-4">
 				<div class="card" th:each="site: ${sites}">
 					<div class="card-body">
@@ -50,6 +52,12 @@
 						<p class="card-text">
 							<strong>Coordonnées GPS : </strong><span
 								th:text="${site.coordonneesgps}">GPS</span>
+						</p>
+
+						<p class="card-text">
+							<strong>Commentaire :</strong> <span
+								th:each="commentaire:${site.commentaires}"><span
+								th:text="${commentaire.contenu}"></span> </span>
 						</p>
 					</div>
 				</div>

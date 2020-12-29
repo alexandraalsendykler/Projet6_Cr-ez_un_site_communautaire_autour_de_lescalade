@@ -28,6 +28,8 @@
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/sitesescalades">Les sites
 					d'escalades</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/touslestopos">Tous les topos</a></li>
 		</ul>
 
 	</nav>
@@ -51,9 +53,11 @@
 							<tr th:each="site: ${sites}">
 								<td><a th:href="@{'/site/'+${site.id}}"
 									th:text="${site.nom}">Nom</a></td>
-									<td th:text="${site.description}">Description</td>
+								<td th:text="${site.description}">Description</td>
 								<td th:if="${site.officiel == true}">Oui</td>
-								<td	th:unless="${site.officiel == true}">Non</h6></td>
+								<td th:unless="${site.officiel == true}">Non
+									</h6>
+								</td>
 
 							</tr>
 						</table>

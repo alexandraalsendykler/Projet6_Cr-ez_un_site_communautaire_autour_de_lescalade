@@ -139,4 +139,11 @@ public class ClimbingController {
 		return("nouscontacter");
 		
 	}
+	
+	@GetMapping(value="touslestopos")
+	public String touslestopos(Model model) {
+		Iterable<Topo> topo = topoRepository.findAll();
+		model.addAttribute("topos", topo);
+		return("touslestopos");
+	}
 }
