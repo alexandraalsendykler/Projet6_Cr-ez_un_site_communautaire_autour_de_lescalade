@@ -18,22 +18,38 @@
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/aPropos">A propos</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
-				href="http://localhost:9001/inscription">Inscription</a></li>
+				href="http://localhost:9001/inscription"
+				th:if="${session.isEmpty()}">Inscription</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
-				href="http://localhost:9001/connexion">Connexion</a></li>
+				href="http://localhost:9001/connexion" th:if="${session.isEmpty()}">Connexion</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/profil" th:unless="${session.isEmpty()}">Mon
+					profil</a></li>
+			<li class="nav-item"><a class="nav-link text-dark"
+				href="http://localhost:9001/deconnexion"
+				th:unless="${session.isEmpty()}">Déconnexion</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/nouscontacter">Nous contacter</a></li>
 			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/sitesescalades">Les sites
 					d'escalades</a></li>
-					<li class="nav-item"><a class="nav-link text-dark"
+			<li class="nav-item"><a class="nav-link text-dark"
 				href="http://localhost:9001/touslestopos">Tous les topos</a></li>
 		</ul>
 
 	</nav>
 	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<h1>Vous avez bien été déconnecté ! A bientôt !</h1>
-
+	<div class="row" style="margin-top: 15px">
+		<div class="container">
+			<div class="col-sm-6 offset-sm-3">
+				<div class="card text-center">
+					<div class="card-header">
+						<h2 class="font-weight-bold">Vous avez bien été déconnecté ! </h2>
+					</div>
+					<div class="card-body">
+						<div class="card text-center">
+							<font><h3>Nous espérons vous revoir vite ! A bientôt !</h3> </font>
+						</div>
 </body>
 </html>
