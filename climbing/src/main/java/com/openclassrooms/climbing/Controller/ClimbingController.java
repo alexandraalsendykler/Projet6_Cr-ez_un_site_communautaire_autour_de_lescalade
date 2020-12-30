@@ -43,8 +43,7 @@ public class ClimbingController {
 	private VoieRepository voieRepository;
 	@Autowired
 	private LongueurRepository longueurRepository;
-	@Autowired
-	private ISiteService siteService;
+
 
 	@GetMapping(value = "/")
 	public String home(Model model) {
@@ -79,40 +78,7 @@ public class ClimbingController {
 	public String aPropos(Model model) {
 		return ("aPropos");
 	}
-
-	@GetMapping(value = "/recherchesites")
-	public String rechercheSites(Model model, @RequestParam String searchsites,
-			@RequestParam(required = false) Boolean officiel) {
-		if (officiel != null) {
-			List<Site> sites = siteRepository.findByNomContainingAndOfficiel(searchsites, officiel);
-			model.addAttribute("sites", sites);
-		} else {
-
-			List<Site> sites = siteRepository.findByNomContaining(searchsites);
-			model.addAttribute("sites", sites);
-		}
-
-		return ("rechercheSites");
-	}
-
-	@GetMapping(value = "/sitesescalades")
-	public String sitesescaldes(Model model) {
-		Iterable<Site> site = siteRepository.findAll();
-		model.addAttribute("sites", site);
-		return ("sitesescalades");
-	}
-
-	@RequestMapping(path = "/site/{id}")
-	public String site(Model model, @PathVariable("id") Integer id) {
-		Optional<Site> site = siteService.findById(id);
-		model.addAttribute("sites", site.get());
-		List<Topo> topo = topoRepository.findAllBySites(site.get());
-		model.addAttribute("topos", topo);
-		List<Secteur> secteur = secteurRepository.findBySites(site.get());
-		model.addAttribute("secteurs", secteur);
-
-		return ("site");
-	}
+	
 
 	@GetMapping(value = "nouscontacter")
 	public String nouscontacter(Model model) {

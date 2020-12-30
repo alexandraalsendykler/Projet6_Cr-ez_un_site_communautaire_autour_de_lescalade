@@ -46,8 +46,8 @@
 
 		<div class="col align-self-start">
 			<div th:each="topo: ${topos}">
-				<td><a th:href="@{'/topo/'+${topo.id}}"></a>
-					<h4 th:text="${topo.nom}"></h4>
+
+				<h4 th:text="${topo.nom}"></h4>
 			</div>
 		</div>
 

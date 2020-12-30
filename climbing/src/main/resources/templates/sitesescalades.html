@@ -47,7 +47,7 @@
 			<div class="card border-dark">
 				<div class="card-body">
 					<div class="card text-center">
-						<h5 class="titre table">Les sites d'escalades</h5>
+						<h5 class="titre table">Liste de tous les sites d'escalade</h5>
 
 						<table class="table">
 
@@ -63,7 +63,6 @@
 								<td th:text="${site.description}">Description</td>
 								<td th:if="${site.officiel == true}">Oui</td>
 								<td th:unless="${site.officiel == true}">Non
-									</h6>
 								</td>
 
 							</tr>
