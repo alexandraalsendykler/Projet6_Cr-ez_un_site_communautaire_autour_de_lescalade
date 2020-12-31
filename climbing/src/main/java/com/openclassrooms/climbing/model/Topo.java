@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topo {
@@ -35,6 +36,18 @@ public class Topo {
 	@ManyToMany
 	@JoinTable(name = "topo_site", joinColumns = @JoinColumn(name = "id_topo"), inverseJoinColumns = @JoinColumn(name = "id_site"))
 	private Set<Site> sites;
+	
+	@OneToMany
+	@JoinColumn(name ="idTopo")
+	private List<Reservation> reservations;
+	
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 	public Set<Site> getSites() {
 		return sites;
