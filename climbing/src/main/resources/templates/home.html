@@ -46,13 +46,12 @@
 			<form action="/recherchesites" method="get">
 				<h3>Vous recherchez un site d'escalade en particulier ?
 					Utilisez le moteur de recherche !</h3>
-
 				<input class="form-control mr-sm-2" type="text" name="searchsites"
-					placeholder="Rechercher" aria-label="Rechercher">
+					placeholder="Rechercher" aria-label="Rechercher"> <label>
+					<input type="checkbox" name="officiel" /> Membre officiel les amis
+					de l'escalade
+				</label><br>
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
-				<label> <input type="checkbox" name="officiel" /> Membre
-					officiel les amis de l'escalade
-				</label>
 			</form>
 
 		</div>
