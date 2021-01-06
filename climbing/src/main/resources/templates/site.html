@@ -44,8 +44,8 @@
 
 	<div class="container">
 		<div class="row" style="margin-top: 30px;">
-			<div class="col-sm-4">
-				<div class="card" th:each="site: ${sites}">
+			<div class="col-sm-4" th:each="site: ${sites}">
+				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title" th:text="${site.nom}">Nom</h5>
 						<h6 class="card-subtitle mb-2 text-muted"
@@ -60,19 +60,39 @@
 							<strong>Coordonnées GPS : </strong><span
 								th:text="${site.coordonneesgps}">GPS</span>
 						</p>
-
-						<p class="card-text">
-							<strong>Commentaire :</strong> <span
-								th:each="commentaire:${site.commentaires}"><span
-								th:text="${commentaire.contenu}"></span> </span>
-						</p>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-8">
-				<div class="card" th:each="secteur: ${secteurs}">
+				<div class="card" style="margin-top: 15px;">
 					<div class="card-body">
-						<h5 class="card-title">Secteur</h5>
+						<h5 class="card-title">Commentaires</h5>
+						<ul th:each="commentaire:${site.commentaires}">
+							<li th:text="${commentaire.contenu}"></li>
+						</ul>
+					</div>
+				</div>
+				<div class="card" style="margin-top: 15px;">
+
+
+					<div class="card text-center">
+						<div class="card-header">
+							<h5 class="font-weight-bold">Laissez un commentaire !</h5>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<textarea class="form-control" placeholder="Votre commentaire"
+									id="floatingTextarea2" style="height: 100px"></textarea>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+
+						</form>
+					</div>
+				</div>
+				</div >
+				<div class="col-sm-8">
+					<div class="card" th:each="secteur: ${secteurs}">
+						<div class="card-body">
+							<h5 class="card-title">Secteur</h5>
 
 							<h6 class="card-subtitle mb-2 text-muted"
 								th:text="${secteur.nom}">nom</h6>
