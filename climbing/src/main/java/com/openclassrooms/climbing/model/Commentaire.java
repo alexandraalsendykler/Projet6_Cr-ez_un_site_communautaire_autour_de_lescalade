@@ -19,6 +19,18 @@ public class Commentaire {
 	@ManyToOne
 	@JoinColumn(name = "idUtilisateur")
 	private Utilisateur utilisateur;
+	
+	@ManyToOne
+	@JoinColumn(name = "idSite")
+	private Site site;
+
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
+	}
 
 	public Commentaire() {
 		super();

@@ -70,65 +70,70 @@
 						</ul>
 					</div>
 				</div>
-				<div class="card" style="margin-top: 15px;">
+				<div th:unless="${session.isEmpty()}">
+					<form method="post" th:action="@{'/savecommentaire/'+${site.id}}"
+						th:object="${commentaire}">
+
+						<div class="card" style="margin-top: 15px;">
 
 
-					<div class="card text-center">
-						<div class="card-header">
-							<h5 class="font-weight-bold">Laissez un commentaire !</h5>
-						</div>
-						<div class="card-body">
-							<div class="form-group">
-								<textarea class="form-control" placeholder="Votre commentaire"
-									id="floatingTextarea2" style="height: 100px"></textarea>
+							<div class="card text-center">
+								<div class="card-header">
+									<h5 class="font-weight-bold">Laissez un commentaire !</h5>
+								</div>
+								<div class="card-body">
+									<div class="form-group">
+										<textarea class="form-control" placeholder="Votre commentaire"
+											style="height: 100px" th:field="*{contenu}"></textarea>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">Envoyer</button>
+
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary">Envoyer</button>
-
-						</form>
-					</div>
+					</form>
 				</div>
-				</div >
-				<div class="col-sm-8">
-					<div class="card" th:each="secteur: ${secteurs}">
-						<div class="card-body">
-							<h5 class="card-title">Secteur</h5>
+			</div>
 
-							<h6 class="card-subtitle mb-2 text-muted"
-								th:text="${secteur.nom}">nom</h6>
-							<p class="card-text">
-								<strong>Voies : </strong>
-							<table class="table">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col">Nom</th>
-										<th scope="col">Cotation</th>
-										<th scope="col">Hauteur</th>
-										<th scope="col">Nombre de point</th>
-										<th scope="col">Longueur</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="voie: ${secteur.voies}">
-										<td th:text="${voie.nom}" scope="row"></td>
-										<td th:text="${voie.cotation}"></td>
-										<td th:text="${voie.hauteur}"></td>
-										<td th:text="${voie.nombredepoint}"></td>
-										<td>
-											<ul th:each="longueur: ${voie.longueurs}">
-												<li th:text="${longueur.cotation}"></li>
-											</ul>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							</p>
+			<div class="col-sm-8">
+				<div class="card" th:each="secteur: ${secteurs}">
+					<div class="card-body">
+						<h5 class="card-title">Secteur</h5>
 
-						</div>
+						<h6 class="card-subtitle mb-2 text-muted" th:text="${secteur.nom}">nom</h6>
+						<p class="card-text">
+							<strong>Voies : </strong>
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Nom</th>
+									<th scope="col">Cotation</th>
+									<th scope="col">Hauteur</th>
+									<th scope="col">Nombre de point</th>
+									<th scope="col">Longueur</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="voie: ${secteur.voies}">
+									<td th:text="${voie.nom}" scope="row"></td>
+									<td th:text="${voie.cotation}"></td>
+									<td th:text="${voie.hauteur}"></td>
+									<td th:text="${voie.nombredepoint}"></td>
+									<td>
+										<ul th:each="longueur: ${voie.longueurs}">
+											<li th:text="${longueur.cotation}"></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</p>
+
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
