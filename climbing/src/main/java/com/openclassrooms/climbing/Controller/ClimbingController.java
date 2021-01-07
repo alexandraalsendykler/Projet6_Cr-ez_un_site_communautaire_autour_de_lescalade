@@ -2,7 +2,9 @@ package com.openclassrooms.climbing.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.openclassrooms.climbing.model.Commentaire;
 import com.openclassrooms.climbing.model.Longueur;
+import com.openclassrooms.climbing.model.NousContacter;
 import com.openclassrooms.climbing.model.Reservation;
 import com.openclassrooms.climbing.model.Secteur;
 import com.openclassrooms.climbing.model.Site;
@@ -43,7 +46,6 @@ public class ClimbingController {
 	private VoieRepository voieRepository;
 	@Autowired
 	private LongueurRepository longueurRepository;
-
 
 	@GetMapping(value = "/")
 	public String home(Model model) {
@@ -78,12 +80,19 @@ public class ClimbingController {
 	public String aPropos(Model model) {
 		return ("aPropos");
 	}
-	
 
 	@GetMapping(value = "nouscontacter")
 	public String nouscontacter(Model model) {
+		model.addAttribute("nouscontacter", new NousContacter());
+	
 		return ("nouscontacter");
-
 	}
+	
+	@PostMapping("/nouscontacter")
+	public ModelAndView nousContacterSucess(@ModelAttribute NousContacter nouscontacter,ModelMap model) {
+		model.addAttribute("envoyer", true);
+			
+		return new ModelAndView("redirect:/nouscontacter", model);
+}
 
 }

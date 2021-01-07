@@ -50,27 +50,35 @@
 						<h2 class="font-weight-bold">Nous contacter</h2>
 					</div>
 					<div class="card-body">
+					<div  th:if="${param.envoyer != null}"> 
+							<p>Votre message a bien été envoyé !</p>
+			</div>
+		<div  th:if="${param.envoyer == null}">
+							<form method="post" th:action="@{/nouscontacter}"
+								th:object="${nouscontacter}">
+								<div class="form-group">
 
-						<div class="form-group">
-							<label for="InputEmail">Veuillez indiquer votre mail pour
-								que nous puissions vous répondre</label> <input type="email"
-								class="form-control" id="email" aria-describedby="emailHelp">
+									<label for="InputEmail">Veuillez indiquer votre mail
+										pour que nous puissions vous répondre</label> <input type="email"
+										class="form-control" id="email" aria-describedby="emailHelp"
+										th:field="*{email}">
+								</div>
 
-						</div>
+								<div class="form-group">
+									<textarea class="form-control" placeholder="Votre message"
+										id="floatingTextarea2" style="height: 100px"
+										th:field="*{message}"></textarea>
 
-						<div class="form-group">
-							<textarea class="form-control" placeholder="Votre message"
-								id="floatingTextarea2" style="height: 100px"></textarea>
+								</div>
 
-						</div>
 
+								<button type="submit" class="btn btn-primary">Envoyer</button>
+								<small class="form-text text-muted">Nous vous répondrons
+									dans les meilleurs délais !</small>
+
+							</form>
 					</div>
-
-					<button type="submit" class="btn btn-primary">Envoyer</button>
-					<small class="form-text text-muted">Nous vous répondrons
-						dans les meilleurs délais !</small>
-
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
