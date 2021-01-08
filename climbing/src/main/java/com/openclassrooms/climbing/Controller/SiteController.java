@@ -20,15 +20,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.openclassrooms.climbing.model.Commentaire;
+import com.openclassrooms.climbing.model.Longueur;
 import com.openclassrooms.climbing.model.Secteur;
 import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
+import com.openclassrooms.climbing.model.Voie;
 import com.openclassrooms.climbing.repository.SecteurRepository;
 import com.openclassrooms.climbing.repository.SiteRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
+import com.openclassrooms.climbing.repository.VoieRepository;
 import com.openclassrooms.climbing.service.ISiteService;
 import com.openclassrooms.climbing.repository.CommentaireRepository;
+import com.openclassrooms.climbing.repository.LongueurRepository;
 
 @Controller
 @SessionAttributes
@@ -43,6 +47,10 @@ public class SiteController {
 	private TopoRepository topoRepository;
 	@Autowired
 	private SecteurRepository secteurRepository;
+	@Autowired
+	private VoieRepository voieRepository;
+	@Autowired
+	private LongueurRepository longueurRepository;
 
 	@Autowired
 	private CommentaireRepository commentaireRepository;
@@ -85,12 +93,65 @@ public class SiteController {
 	@PostMapping("/savecommentaire/{id}")
 	public ModelAndView saveCommentaire(@ModelAttribute Commentaire commentaire, Model model,
 			@PathVariable("id") Integer id, HttpSession session) {
-		Utilisateur utilisateur = (Utilisateur)session.getAttribute("user");
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
 		commentaire.setUtilisateur(utilisateur);
 		Optional<Site> site = siteService.findById(id);
 		commentaire.setSite(site.get());
 		commentaireRepository.save(commentaire);
 		return new ModelAndView("redirect:/site/{id}");
 
+	}
+
+	@GetMapping("/ajouternouveausite")
+	public String ajouternouveausite(Model model) {
+		model.addAttribute("site", new Site());
+		return ("ajouternouveausite");
+	}
+
+	@PostMapping("/ajouternouveausecteur")
+	public String ajouternouveausecteur(@ModelAttribute Site site, Model model, HttpSession session) {
+		site.setOfficiel(false);
+		siteRepository.save(site);
+		session.setAttribute("site", site);
+		model.addAttribute("secteur", new Secteur());
+		return ("/ajouternouveausecteur");
+	}
+
+
+
+	@PostMapping("/ajouternouvellevoie")
+	public String ajouternouvellevoie(@ModelAttribute Secteur secteur, Model model, HttpSession session) {
+		Site site = (Site) session.getAttribute("site");
+		secteur.setSite(site);
+		secteurRepository.save(secteur);
+		session.setAttribute("secteur", secteur);
+		model.addAttribute("voie", new Voie());
+		return ("ajouternouvellevoie");
+	}
+
+
+	
+	@PostMapping("/ajouternouvellelongueur")
+	public String ajouternouvellelongueur(@ModelAttribute Voie voie, Model model, HttpSession session) {
+		Secteur secteur = (Secteur) session.getAttribute("secteur");
+		voie.setSecteurs(secteur);
+		voieRepository.save(voie);
+		session.setAttribute("voie", voie);
+		model.addAttribute("longueur", new Longueur());
+		return("ajouternouvellelongueur");
+	}
+	
+
+	
+	@PostMapping("/confirmationajout")
+	public String confirmationajout(@ModelAttribute Longueur longueur, Model model, HttpSession session) {
+		Voie voie = (Voie) session.getAttribute("voie");
+		longueur.setVoie(voie);
+		longueurRepository.save(longueur);
+		session.removeAttribute("voie");
+		session.removeAttribute("site");
+		session.removeAttribute("secteur");
+		return("confirmationajout");
+		
 	}
 }

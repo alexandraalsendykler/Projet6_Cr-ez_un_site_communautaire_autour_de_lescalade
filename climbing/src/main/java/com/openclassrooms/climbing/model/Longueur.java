@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Longueur {
@@ -13,6 +15,18 @@ public class Longueur {
 	@Column(name = "idLongueur")
 	private Integer id;
 	
+	@ManyToOne
+	@JoinColumn(name = "idVoie")
+	private Voie voie;
+	
+	public Voie getVoie() {
+		return voie;
+	}
+
+	public void setVoie(Voie voie) {
+		this.voie = voie;
+	}
+
 	public Longueur() {
 		super();
 	}

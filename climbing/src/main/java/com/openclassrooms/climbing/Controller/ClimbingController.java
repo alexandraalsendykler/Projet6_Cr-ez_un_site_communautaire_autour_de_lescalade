@@ -84,19 +84,15 @@ public class ClimbingController {
 	@GetMapping(value = "nouscontacter")
 	public String nouscontacter(Model model) {
 		model.addAttribute("nouscontacter", new NousContacter());
-	
+
 		return ("nouscontacter");
 	}
-	
-	@PostMapping("/nouscontacter")
-	public ModelAndView nousContacterSucess(@ModelAttribute NousContacter nouscontacter,ModelMap model) {
-		model.addAttribute("envoyer", true);
-			
-		return new ModelAndView("redirect:/nouscontacter", model);
-}
 
-	@GetMapping(value="/ajouterunnouveausite")
-	public String ajouterunnouveausite(Model model) {
-	return("ajouterunnouveausite");
-}
+	@PostMapping("/nouscontacter")
+	public ModelAndView nousContacterSucess(@ModelAttribute NousContacter nouscontacter, ModelMap model) {
+		model.addAttribute("envoyer", true);
+
+		return new ModelAndView("redirect:/nouscontacter", model);
+	}
+
 }
