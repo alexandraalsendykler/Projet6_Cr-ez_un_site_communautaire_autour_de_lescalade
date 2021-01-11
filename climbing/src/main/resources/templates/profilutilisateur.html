@@ -23,54 +23,56 @@
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/connexion"
 					th:if="${session.isEmpty()}">Connexion</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/profil"
-					th:unless="${session.isEmpty()}">Mon
-					profil</a></li>
+					th:unless="${session.isEmpty()}">
+					Profil</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/deconnexion"
 					th:unless="${session.isEmpty()}">Déconnexion</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/nouscontacter">Nous
 					contacter</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Les sites
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Sites
 					d'escalades</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/touslestopos">Tous les
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/touslestopos">Les
 					topos</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/ajouternouveausite"
+					th:unless="${session.isEmpty()}">Ajouter sites d'escalade</a></li>
 		</ul>
 
 	</nav>
-	<img class="img-fluid" th:src="@{/img/montagne.jpg}" alt="">
+	<img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
-	<div class="row align-items-center" style="margin-top:30px">
-		<div class="container">
-			<div class="col-sm-6 offset-sm-3">
-				<div class="card text-center">
-					<div class="card-header">
-						<h2 class="font-weight-bold">Bienvenue sur votre profil <span
-								th:utext="${connectedUser.pseudo}"></span> !</h2>
-					</div>
-
-					<div class="row" style="margin-top:15px">
-						<div class="offset-sm-3 col-sm-6">
-							<div class="card border-dark">
-								<div class="card-body">
-									<div class="card text-center">
-										<h5 class="titre table">Topo et régions</h5>
-
-										<table class="table">
-
-											<tr>
-												<th>region</th>
-												<th>disponibilite</th>
-											</tr>
-											<tr th:each="topo : ${topos}">
-												<td th:text="${topo.region}">region</td>
-												<td th:text="${topo.disponibilite}">cotation</td>
-												<td>
-											</tr>
-										</table>
-
-										</tr>
-										</table>
-
+					<div class="row align-items-center" style="margin-top:30px">
+						<div class="container">
+							<div class="col-sm-6 offset-sm-3">
+								<div class="card text-center">
+									<div class="card-header">
+										<h2 class="font-weight-bold">Bienvenue sur votre profil <span
+												th:utext="${connectedUser.pseudo}"></span> !</h2>
 									</div>
+
+									<div class="row" style="margin-top:15px">
+										<div class="offset-sm-3 col-sm-6">
+											<div class="card border-dark">
+												<div class="card-body">
+													<div class="card text-center">
+														<h5 class="titre table">Topo et régions</h5>
+
+														<table class="table">
+
+															<tr>
+																<th>region</th>
+																<th>disponibilite</th>
+															</tr>
+															<tr th:each="topo : ${topos}">
+																<td th:text="${topo.region}">region</td>
+																<td th:text="${topo.disponibilite}">cotation</td>
+																<td>
+															</tr>
+														</table>
+
+														</tr>
+														</table>
+
+													</div>
 </body>
 
 </html>
