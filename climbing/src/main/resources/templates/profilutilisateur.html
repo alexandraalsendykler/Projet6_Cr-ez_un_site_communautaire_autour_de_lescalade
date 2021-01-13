@@ -46,11 +46,11 @@
 				<div class="card text-center">
 					<div class="card-header">
 						<h2 class="font-weight-bold">Bienvenue sur votre profil <span
-								th:utext="${connectedUser.pseudo}"></span> !</h2>
+								th:utext="${connectedUser.pseudo}"></span></h2>
 					</div>
 
 					<div class="row" style="margin-top:15px">
-						<div class="offset-sm-3 col-sm-6">
+						<div class="offset-sm-2 col-sm-8">
 							<div class="card border-dark">
 								<div class="card-body">
 									<div class="card text-center">
@@ -84,51 +84,57 @@
 											</div>
 
 											<div class="card-body">
-												<form method="post" th:action="@{savetopo}"
-													th:object="${newTopo}">
-													
-																										<div class="form-group">
+												<form method="post" th:action="@{savetopo}" th:object="${newTopo}">
 
-														<label for="text">Site</label> 
-<select th:field="*{sites}">
-  <option th:each="site : ${sitesAll}" th:value="${site}" th:text="${site.nom}"></option>
-</select>
-
-													</div>
-													
 													<div class="form-group">
 
-														<label for="text">Nom du topo</label> <input
-															type="text" class="form-control" id="text"
+														<label for="text">Site</label>
+														<select th:field="*{sites}">
+															<option th:each="site : ${sitesAll}" th:value="${site.id}"
+																th:text="${site.nom}"></option>
+														</select>
+
+													</div>
+
+													<div class="form-group">
+
+														<label for="text">Nom du topo</label> <input type="text"
+															class="form-control" id="text"
 															aria-describedby="nomSiteEscalade" th:field="*{nom}">
 
 													</div>
 
 													<div class="form-group">
 														<label for="text">Description du topo</label>
-														<textarea class="form-control"
-															placeholder="Description du site d'escalade"
+														<textarea class="form-control" placeholder="Description"
 															id="floatingTextarea2" style="height: 100px"
 															th:field="*{description}"></textarea>
 													</div>
 
+													<div class="form-group">
+														<label for="text">Lieu</label> <input type="text"
+															class="form-control" id="text" aria-describedby="Region"
+															th:field="*{region}">
+													</div>
+													<div class="form-group">
+														<div class="form-check form-switch">
+															<input class="form-check-input" type="checkbox"
+																aria-describedby="Disponibilite"
+																th:field="*{disponibilite}" id="flexSwitchCheckDefault">
+															<label class="form-check-label"
+																for="text">Disponibilité</label>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="text">Date de Parution</label> <input type="date"
+															class="form-control" id="text"
+															aria-describedby="DateParution" th:field="*{dateParution}">
+													</div>
+													<div class="form-group">
+														<button type="submit" class="btn btn-primary">Envoyer</button>
 
-													<label for="text">Lieu</label> <input type="text"
-														class="form-control" id="text" aria-describedby="Region"
-														th:field="*{region}">
-
-													<label for="text">Disponibilité</label> <input type="checkbox"
-														class="form-control"  aria-describedby="Disponibilite"
-														th:field="*{disponibilite}" >
-
-													<label for="text">Date de Parution</label> <input type="date"
-														class="form-control" id="text" aria-describedby="DateParution"
-														th:field="*{dateParution}">
-
-<button type="submit" class="btn btn-primary">Envoyer</button>
-
+													</div>
 											</div>
-										</div>
 </body>
 
 </html>

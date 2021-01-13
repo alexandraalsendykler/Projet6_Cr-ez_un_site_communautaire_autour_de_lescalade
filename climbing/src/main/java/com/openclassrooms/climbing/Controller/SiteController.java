@@ -110,6 +110,7 @@ public class SiteController {
 
 	@PostMapping("/ajouternouveausecteur")
 	public String ajouternouveausecteur(@ModelAttribute Site site, Model model, HttpSession session) {
+
 		site.setOfficiel(false);
 		siteRepository.save(site);
 		session.setAttribute("site", site);
@@ -117,41 +118,68 @@ public class SiteController {
 		return ("/ajouternouveausecteur");
 	}
 
-
-
 	@PostMapping("/ajouternouvellevoie")
-	public String ajouternouvellevoie(@ModelAttribute Secteur secteur, Model model, HttpSession session) {
+	public String ajouternouvellevoie(@RequestParam(required = false, value = "next") String next,
+			@RequestParam(required = false, value = "addSecteur") String addSecteur, @ModelAttribute Secteur secteur,
+			Model model, HttpSession session) {
+		String redirect = "";
+
 		Site site = (Site) session.getAttribute("site");
 		secteur.setSite(site);
 		secteurRepository.save(secteur);
 		session.setAttribute("secteur", secteur);
-		model.addAttribute("voie", new Voie());
-		return ("ajouternouvellevoie");
+		if (addSecteur != null) {
+			model.addAttribute("secteur", new Secteur());
+			redirect = "ajouternouveausecteur";
+		} else if (next != null) {
+			model.addAttribute("voie", new Voie());
+			redirect = "ajouternouvellevoie";
+		}
+		return redirect;
 	}
 
-
-	
 	@PostMapping("/ajouternouvellelongueur")
-	public String ajouternouvellelongueur(@ModelAttribute Voie voie, Model model, HttpSession session) {
+	public String ajouternouvellelongueur(@RequestParam(required = false, value = "next") String next,
+			@RequestParam(required = false, value = "addVoie") String addVoie, @ModelAttribute Voie voie, Model model,
+			HttpSession session) {
+		String redirect = "";
+
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
 		voie.setSecteurs(secteur);
 		voieRepository.save(voie);
 		session.setAttribute("voie", voie);
-		model.addAttribute("longueur", new Longueur());
-		return("ajouternouvellelongueur");
-	}
-	
+		if (addVoie != null) {
+			model.addAttribute("voie", new Voie());
+			redirect = "ajouternouvellevoie";
+		} else if (next != null) {
+			model.addAttribute("longueur", new Longueur());
+			redirect = "ajouternouvellelongueur";
 
-	
+		}
+
+		return redirect;
+	}
+
 	@PostMapping("/confirmationajout")
-	public String confirmationajout(@ModelAttribute Longueur longueur, Model model, HttpSession session) {
+	public String confirmationajout(@RequestParam(required = false, value = "next") String next,
+			@RequestParam(required = false, value = "addLongueur") String addLongueur,
+			@ModelAttribute Longueur longueur, Model model, HttpSession session) {
+		String redirect = "";
+
 		Voie voie = (Voie) session.getAttribute("voie");
 		longueur.setVoie(voie);
 		longueurRepository.save(longueur);
-		session.removeAttribute("voie");
-		session.removeAttribute("site");
-		session.removeAttribute("secteur");
-		return("confirmationajout");
-		
+		session.setAttribute("longueur", longueur);
+		if (addLongueur != null) {
+			model.addAttribute("longueur", new Longueur());
+			redirect = "ajouternouvellelongueur";
+		} else if (next != null) {
+			session.removeAttribute("voie");
+			session.removeAttribute("site");
+			session.removeAttribute("secteur");
+			redirect = "confirmationajout";
+		}
+		return redirect;
 	}
+
 }

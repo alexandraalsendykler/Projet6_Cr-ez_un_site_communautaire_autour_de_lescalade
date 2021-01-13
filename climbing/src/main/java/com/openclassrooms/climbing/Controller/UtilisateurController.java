@@ -102,7 +102,8 @@ public class UtilisateurController<User> {
 	public ModelAndView profilUtilisateur(@ModelAttribute Topo newTopo, Model model, HttpSession session) {
 		Utilisateur connectedUser = (Utilisateur) session.getAttribute("user");
 		newTopo.setUtilisateur(connectedUser);
-		topoRepository.save(newTopo);		
+		topoRepository.save(newTopo);	
+	
 		return new ModelAndView("redirect:/profil");
 
 	} 

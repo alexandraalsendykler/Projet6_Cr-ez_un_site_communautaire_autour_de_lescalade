@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Topo {
 
@@ -27,6 +29,7 @@ public class Topo {
 	private Boolean disponibilite;
 	private String nom;
 	private String description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateParution;
 	
 	@ManyToOne
@@ -35,7 +38,7 @@ public class Topo {
 
 	@ManyToMany
 	@JoinTable(name = "topo_site", joinColumns = @JoinColumn(name = "id_topo"), inverseJoinColumns = @JoinColumn(name = "id_site"))
-	private Set<Site> sites;
+	private List<Site> sites;
 	
 	@OneToMany
 	@JoinColumn(name ="idTopo")
@@ -49,11 +52,11 @@ public class Topo {
 		this.reservations = reservations;
 	}
 
-	public Set<Site> getSites() {
+	public List<Site> getSites() {
 		return sites;
 	}
 
-	public void setSites(Set<Site> sites) {
+	public void setSites(List<Site> sites) {
 		this.sites = sites;
 	}
 
