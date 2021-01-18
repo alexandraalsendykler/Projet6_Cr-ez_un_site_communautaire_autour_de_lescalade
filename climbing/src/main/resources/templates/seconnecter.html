@@ -17,30 +17,35 @@
 		</a>
 
 		<ul class="nav justify-content-end ">
+
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Sites
+					d'escalades</a></li>
+
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/touslestopos">Les topos</a>
+			</li>
+
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/aPropos">A propos</a></li>
+
+			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/nouscontacter">Nous
+					contacter</a></li>
+
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/inscription"
 					th:if="${session.isEmpty()}">Inscription</a></li>
+
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/connexion"
 					th:if="${session.isEmpty()}">Connexion</a></li>
+
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/profil"
 					th:unless="${session.isEmpty()}">
 					Profil</a></li>
+
 			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/deconnexion"
 					th:unless="${session.isEmpty()}">Déconnexion</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/nouscontacter">Nous
-					contacter</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Sites
-					d'escalades</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/touslestopos">Les
-					topos</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/ajouternouveausite"
-					th:unless="${session.isEmpty()}">Ajouter sites d'escalade</a></li>
-		</ul>
 
 	</nav>
 	<img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
-				
-				<div class="row" style="margin-top: 15px">
+
+	<div class="row" style="margin-top: 15px">
 		<div class="container">
 			<div class="col-sm-6 offset-sm-3">
 				<div class="card text-center">
@@ -48,28 +53,32 @@
 						<h2 class="font-weight-bold">Se connecter</h2>
 					</div>
 					<div class="card-body">
-					
-			<form th:action="@{/seConnecter}" method="post" th:object="${users}">		
-            <div class="form-Envoyer">
-            <h4>Connexion</h4>
-            <input th:field="*{email}" type="text" id="S'identifier" class="form-control input-sm chat-input" placeholder="S'identifier" />
-            </br>
-            <input th:field="*{motdepasse}"  type="password" id="Mot de passe" class="form-control input-sm chat-input" placeholder="Mot de passe" />
-            </br>
-            <div class="wrapper">
-            <span class="group-btn">     
-                     
-              <button type="submit" class="btn btn-primary">Envoyer</button>
-            </span>
-            </form>
-            <p th:if="${param.seConnecterErreur == true}" class="erreur">Email erroné ou mauvais mot de passe !</p>
-            </div>
-            </div>
-        
-        </div>
-    </div>
-</div> 
-</div>
+
+						<form th:action="@{/seConnecter}" method="post" th:object="${users}">
+							<div class="form-Envoyer">
+								<h4>Connexion</h4>
+								<input th:field="*{email}" type="text" id="S'identifier"
+									class="form-control input-sm chat-input" placeholder="S'identifier" />
+								</br>
+								<input th:field="*{motdepasse}" type="password" id="Mot de passe"
+									class="form-control input-sm chat-input" placeholder="Mot de passe" />
+								</br>
+								<div class="wrapper">
+									<span class="group-btn">
+
+										<button type="submit" class="btn btn-primary">Envoyer</button>
+									</span>
+						</form>
+						<p th:if="${param.seConnecterErreur == true}" class="erreur">Email erroné ou mauvais mot de
+							passe !</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
 
 </body>
+
 </html>

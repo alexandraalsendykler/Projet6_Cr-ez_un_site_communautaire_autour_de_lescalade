@@ -1,5 +1,6 @@
 package com.openclassrooms.climbing.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Site {
 	
 	@OneToMany
 	@JoinColumn(name = "idSite")
-	private List<Secteur> secteurs;
+	private List<Secteur> secteurs = new ArrayList<>(); 
 
 	public Integer getId() {
 		return id;

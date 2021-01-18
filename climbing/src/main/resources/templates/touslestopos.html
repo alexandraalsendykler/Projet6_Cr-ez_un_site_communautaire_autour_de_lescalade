@@ -2,73 +2,79 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Compte utilisateur</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Compte utilisateur</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
 </head>
 
-<body>
+<nav class="navbar navbar-light " style="background-color: #e3f2fd;">
 
-	<nav class="navbar navbar-light " style="background-color: #e3f2fd;">
+	<a class="navbar-brand" href="/">
+		<h1>Les amis de l'escalade !</h1>
+	</a>
 
-		<a class="navbar-brand" href="/">
-			<h1>Les amis de l'escalade !</h1>
-		</a>
+	<ul class="nav justify-content-end ">
 
-		<ul class="nav justify-content-end ">
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/aPropos">A propos</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/inscription"
-					th:if="${session.isEmpty()}">Inscription</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/connexion"
-					th:if="${session.isEmpty()}">Connexion</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/profil"
-					th:unless="${session.isEmpty()}">
-					Profil</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/deconnexion"
-					th:unless="${session.isEmpty()}">Déconnexion</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/nouscontacter">Nous
-					contacter</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/sitesescalades">Sites
-					d'escalades</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/touslestopos">Les
-					topos</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="http://localhost:9001/ajouternouveausite"
-					th:unless="${session.isEmpty()}">Ajouter sites d'escalade</a></li>
-		</ul>
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/sitesescalades">Sites d'escalades</a></li>
 
-	</nav>
-	<img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/touslestopos">Les topos</a></li>
 
-	<div class="row" style="margin-top: 15px">
-		<div class="offset-sm-3 col-sm-6">
-			<div class="card border-dark">
-				<div class="card-body">
-					<div class="card text-center">
-						<h5 class="titre table">Liste de tous les topos</h5>
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/aPropos">A propos</a></li>
 
-						<table class="table">
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/nouscontacter">Nous contacter</a></li>
 
-							<tr>
-								<th>Nom</th>
-								<th>Région</th>
-								<th>Description</th>
-								<th>Date de parution</th>
-								<th>Disponibilité</th>
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/inscription" th:if="${session.isEmpty()}">Inscription</a></li>
 
-							</tr>
-							<tr th:each="topo : ${topos}">
-								<td><a th:href="@{'/topo/'+${topo.id}}"
-									th:text="${topo.nom}"></a></td>
-								<td th:text="${topo.region}">Région</td>
-								<td th:text="${topo.description}">Description</td>
-								<td th:text="${topo.dateParution}">Date de parution</td>
-								<td th:if="${topo.disponibilite == true}">Oui</td>
-								<td th:unless="${topo.disponibilite == true}">Non</td>
-								<td>
-							</tr>
-						</table>
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/connexion" th:if="${session.isEmpty()}">Connexion</a></li>
 
-					</div>
-</body>
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/profil" th:unless="${session.isEmpty()}">
+				Profil</a></li>
+
+		<li class="nav-item"><a class="nav-link text-dark"
+			href="http://localhost:9001/deconnexion"
+			th:unless="${session.isEmpty()}">Déconnexion</a></li>
+</nav>
+<img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
+
+<div class="row" style="margin-top: 15px">
+	<div class="offset-sm-3 col-sm-6">
+		<div class="card border-dark">
+			<div class="card-body">
+				<div class="card text-center">
+					<h5 class="titre table">Liste de tous les topos</h5>
+
+					<table class="table">
+
+						<tr>
+							<th>Nom</th>
+							<th>Région</th>
+							<th>Description</th>
+							<th>Date de parution</th>
+							<th>Disponibilité</th>
+
+						</tr>
+						<tr th:each="topo : ${topos}">
+							<td><a th:href="@{'/topo/'+${topo.id}}"
+								th:text="${topo.nom}"></a></td>
+							<td th:text="${topo.region}">Région</td>
+							<td th:text="${topo.description}">Description</td>
+							<td th:text="${topo.dateParution}">Date de parution</td>
+							<td th:if="${topo.disponibilite == true}">Oui</td>
+							<td th:unless="${topo.disponibilite == true}">Non</td>
+							<td>
+						</tr>
+					</table>
+
+				</div>
+				</body>
 </html>

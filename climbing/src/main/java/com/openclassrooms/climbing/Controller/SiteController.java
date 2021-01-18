@@ -105,14 +105,14 @@ public class SiteController {
 	@GetMapping("/ajouternouveausite")
 	public String ajouternouveausite(Model model) {
 		model.addAttribute("site", new Site());
-		return ("ajouternouveausite");
+		return "ajouternouveausite";
 	}
 
 	@PostMapping("/ajouternouveausecteur")
 	public String ajouternouveausecteur(@ModelAttribute Site site, Model model, HttpSession session) {
 
 		site.setOfficiel(false);
-		siteRepository.save(site);
+		// siteRepository.save(site);
 		session.setAttribute("site", site);
 		model.addAttribute("secteur", new Secteur());
 		return ("/ajouternouveausecteur");
@@ -125,8 +125,9 @@ public class SiteController {
 		String redirect = "";
 
 		Site site = (Site) session.getAttribute("site");
+		site.getSecteurs().add(secteur); // on ajoute les secteur à la liste des secteurs du site
 		secteur.setSite(site);
-		secteurRepository.save(secteur);
+		// secteurRepository.save(secteur);
 		session.setAttribute("secteur", secteur);
 		if (addSecteur != null) {
 			model.addAttribute("secteur", new Secteur());
@@ -145,8 +146,9 @@ public class SiteController {
 		String redirect = "";
 
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
+		secteur.getVoies().add(voie);
 		voie.setSecteurs(secteur);
-		voieRepository.save(voie);
+		// voieRepository.save(voie);
 		session.setAttribute("voie", voie);
 		if (addVoie != null) {
 			model.addAttribute("voie", new Voie());
@@ -167,13 +169,16 @@ public class SiteController {
 		String redirect = "";
 
 		Voie voie = (Voie) session.getAttribute("voie");
+		voie.getLongueurs().add(longueur);
 		longueur.setVoie(voie);
-		longueurRepository.save(longueur);
+		// longueurRepository.save(longueur);
 		session.setAttribute("longueur", longueur);
 		if (addLongueur != null) {
 			model.addAttribute("longueur", new Longueur());
 			redirect = "ajouternouvellelongueur";
 		} else if (next != null) {
+			Site site = (Site) session.getAttribute("site");
+			siteRepository.save(site);
 			session.removeAttribute("voie");
 			session.removeAttribute("site");
 			session.removeAttribute("secteur");
