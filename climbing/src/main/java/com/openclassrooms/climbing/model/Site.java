@@ -3,6 +3,7 @@ package com.openclassrooms.climbing.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Site {
 	@JoinColumn(name = "idSite")
 	private List<Commentaire> commentaires;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idSite")
 	private List<Secteur> secteurs = new ArrayList<>(); 
 

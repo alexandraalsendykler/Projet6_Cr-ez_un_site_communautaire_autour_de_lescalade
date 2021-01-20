@@ -1,5 +1,6 @@
 package com.openclassrooms.climbing.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ public class Longueur {
 	@Column(name = "idLongueur")
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idVoie")
 	private Voie voie;
 	

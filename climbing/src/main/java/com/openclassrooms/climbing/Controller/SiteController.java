@@ -1,5 +1,6 @@
 package com.openclassrooms.climbing.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -124,11 +125,21 @@ public class SiteController {
 			Model model, HttpSession session) {
 		String redirect = "";
 
+		List<Secteur> secteurs = (List<Secteur>) session.getAttribute("secteurs");
+		List<Secteur> newsecteurs = new ArrayList<Secteur>();
+		if (secteurs != null) {
+
+			newsecteurs = secteurs;
+		}
+
 		Site site = (Site) session.getAttribute("site");
 		site.getSecteurs().add(secteur); // on ajoute les secteur à la liste des secteurs du site
 		secteur.setSite(site);
+		newsecteurs.add(secteur);
+
 		// secteurRepository.save(secteur);
 		session.setAttribute("secteur", secteur);
+		session.setAttribute("secteurs", newsecteurs);
 		if (addSecteur != null) {
 			model.addAttribute("secteur", new Secteur());
 			redirect = "ajouternouveausecteur";
@@ -141,50 +152,91 @@ public class SiteController {
 
 	@PostMapping("/ajouternouvellelongueur")
 	public String ajouternouvellelongueur(@RequestParam(required = false, value = "next") String next,
-			@RequestParam(required = false, value = "addVoie") String addVoie, @ModelAttribute Voie voie, Model model,
+			@RequestParam(required = false, value = "addVoie") String addVoie,
+			@RequestParam(required = false, value = "addSecteur") String addSecteur,
+			@ModelAttribute Voie voie, Model model,
 			HttpSession session) {
+
 		String redirect = "";
 
+		List<Voie> voies = (List<Voie>) session.getAttribute("voies");
+		List<Voie> newvoies = new ArrayList<Voie>();
+		if (voies != null) {
+
+			newvoies = voies;
+		}
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
-		secteur.getVoies().add(voie);
 		voie.setSecteurs(secteur);
 		// voieRepository.save(voie);
 		session.setAttribute("voie", voie);
+		newvoies.add(voie);
+		session.setAttribute("voies", newvoies);
 		if (addVoie != null) {
 			model.addAttribute("voie", new Voie());
 			redirect = "ajouternouvellevoie";
+		} else if (addSecteur != null) {
+			model.addAttribute("secteur", new Secteur());
+			redirect = "ajouternouveausecteur";
 		} else if (next != null) {
 			model.addAttribute("longueur", new Longueur());
 			redirect = "ajouternouvellelongueur";
-
 		}
-
 		return redirect;
+
 	}
 
 	@PostMapping("/confirmationajout")
-	public String confirmationajout(@RequestParam(required = false, value = "next") String next,
+	public String confirmationajout(@RequestParam(required = false, value  = "next") String next,
 			@RequestParam(required = false, value = "addLongueur") String addLongueur,
-			@ModelAttribute Longueur longueur, Model model, HttpSession session) {
+			@RequestParam(required = false, value = "addVoie") String addVoie,
+			@RequestParam(required = false, value = "addSecteur") String addSecteur, @ModelAttribute Longueur longueur,
+			Model model, HttpSession session) {
 		String redirect = "";
+		String save= (String) session.getAttribute("save");
 
-		Voie voie = (Voie) session.getAttribute("voie");
-		voie.getLongueurs().add(longueur);
-		longueur.setVoie(voie);
-		// longueurRepository.save(longueur);
-		session.setAttribute("longueur", longueur);
+
+		List<Longueur> longueurs = (List<Longueur>) session.getAttribute("longueurs");
+		List<Longueur> newlongueurs = new ArrayList<Longueur>();
+		if (longueurs != null) {
+
+			newlongueurs = longueurs;
+		}
+
+		if (longueur != null) {
+			Voie voie = (Voie) session.getAttribute("voie");
+			longueur.setVoie(voie);
+			session.setAttribute("longueur", longueur);
+			newlongueurs.add(longueur);
+			session.setAttribute("longueurs", newlongueurs);
+		}
+
 		if (addLongueur != null) {
 			model.addAttribute("longueur", new Longueur());
 			redirect = "ajouternouvellelongueur";
+		} else if (addVoie != null) {
+			model.addAttribute("voie", new Voie());
+			redirect = "ajouternouvellevoie";
+		} else if (addSecteur != null) {
+			model.addAttribute("secteur", new Secteur());
+			redirect = "ajouternouveausecteur";
 		} else if (next != null) {
 			Site site = (Site) session.getAttribute("site");
 			siteRepository.save(site);
+			List<Secteur> secteurs = (List<Secteur>) session.getAttribute("secteurs");
+			secteurRepository.saveAll(secteurs);
+			List<Voie> voies = (List<Voie>) session.getAttribute("voies");
+			voieRepository.saveAll(voies);
+
+			longueurRepository.saveAll(newlongueurs);
+
 			session.removeAttribute("voie");
 			session.removeAttribute("site");
 			session.removeAttribute("secteur");
 			redirect = "confirmationajout";
+			System.out.println("toto");
 		}
+		
 		return redirect;
-	}
 
+	}
 }

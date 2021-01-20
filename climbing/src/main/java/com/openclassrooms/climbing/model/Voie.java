@@ -2,6 +2,7 @@ package com.openclassrooms.climbing.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,11 @@ public class Voie {
 	@Column(name = "idVoie")
 	private Integer id;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name="idVoie")
 	private List<Longueur> longueurs;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idSecteur")
 	private Secteur secteurs;
 	

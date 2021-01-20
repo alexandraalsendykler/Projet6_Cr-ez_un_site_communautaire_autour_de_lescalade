@@ -2,6 +2,7 @@ package com.openclassrooms.climbing.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +19,12 @@ public class Secteur {
 	@Column(name = "idSecteur")
 	private Integer id;
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idSecteur")
 	private List<Voie> voies;
+	
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idSite")
 	private Site sites;
 
