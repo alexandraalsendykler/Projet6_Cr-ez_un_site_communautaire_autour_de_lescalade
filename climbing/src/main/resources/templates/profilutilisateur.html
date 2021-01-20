@@ -70,6 +70,8 @@
 											<tr>
 												<th>region</th>
 												<th>disponibilite</th>
+												<th>site</th>
+
 											</tr>
 											<tr th:each="topo : ${topos}">
 												<td th:text="${topo.region}">region</td>
@@ -77,6 +79,13 @@
 												<td th:unless="${topo.disponibilite == true}">Non
 												</td>
 												<td>
+													<ul th:each="site: ${topo.sites}">
+														<li>
+															<a th:href="@{'/site/'+${site.id}}"
+																th:text="${site.nom}">Nom</a></li>
+													</ul>
+												</td>
+
 											</tr>
 										</table>
 
@@ -109,7 +118,7 @@
 																<label class="form-check-label"
 																	th:text="${site.nom}"></label>
 															</div>
-														</th:block><br/><br/>
+														</th:block><br /><br />
 														<a class="btn  btn-dark" href="/ajouternouveausite">Ajouter un
 															nouveau site<a />
 													</div>
