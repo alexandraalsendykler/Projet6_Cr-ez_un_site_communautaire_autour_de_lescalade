@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.openclassrooms.climbing.model.Commentaire;
 import com.openclassrooms.climbing.model.Longueur;
@@ -151,18 +152,21 @@ public class SiteController {
 	}
 
 	@PostMapping("/ajouternouvellelongueur")
-	public String ajouternouvellelongueur(@RequestParam(required = false, value = "next") String next,
+	public ModelAndView ajouternouvellelongueur(
+			@RequestParam(required = false, value = "next") String next,
+			@RequestParam(required = false, value = "finish") String finish,
 			@RequestParam(required = false, value = "addVoie") String addVoie,
-			@RequestParam(required = false, value = "addSecteur") String addSecteur,
-			@ModelAttribute Voie voie, Model model,
-			HttpSession session) {
+			@RequestParam(required = false, value = "addSecteur") String addSecteur, 
+			@ModelAttribute Voie voie,
+			Model model, 
+			HttpSession session, 
+			RedirectAttributes redirectattributes) {
 
 		String redirect = "";
 
 		List<Voie> voies = (List<Voie>) session.getAttribute("voies");
 		List<Voie> newvoies = new ArrayList<Voie>();
 		if (voies != null) {
-
 			newvoies = voies;
 		}
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
@@ -180,32 +184,34 @@ public class SiteController {
 		} else if (next != null) {
 			model.addAttribute("longueur", new Longueur());
 			redirect = "ajouternouvellelongueur";
+		} else if (finish != null){
+			redirectattributes.addAttribute("finish",true);
+			redirect = "confirmationajout";
+			return new ModelAndView("redirect:/"+ redirect);
 		}
-		return redirect;
 
+		ModelAndView mav=new ModelAndView(redirect);
+		return mav;
 	}
 
 	@PostMapping("/confirmationajout")
-	public String confirmationajout(@RequestParam(required = false, value  = "next") String next,
+	public String confirmationajout(@RequestParam(required = false, value = "next") String next,
 			@RequestParam(required = false, value = "addLongueur") String addLongueur,
 			@RequestParam(required = false, value = "addVoie") String addVoie,
 			@RequestParam(required = false, value = "addSecteur") String addSecteur, @ModelAttribute Longueur longueur,
 			Model model, HttpSession session) {
 		String redirect = "";
-		String save= (String) session.getAttribute("save");
-
-
+		System.out.println("ratt "+next);
 		List<Longueur> longueurs = (List<Longueur>) session.getAttribute("longueurs");
 		List<Longueur> newlongueurs = new ArrayList<Longueur>();
 		if (longueurs != null) {
-
 			newlongueurs = longueurs;
 		}
 
 		if (longueur != null) {
 			Voie voie = (Voie) session.getAttribute("voie");
 			longueur.setVoie(voie);
-			session.setAttribute("longueur", longueur);
+			// session.setAttribute("longueur", longueur);
 			newlongueurs.add(longueur);
 			session.setAttribute("longueurs", newlongueurs);
 		}
@@ -233,9 +239,8 @@ public class SiteController {
 			session.removeAttribute("site");
 			session.removeAttribute("secteur");
 			redirect = "confirmationajout";
-			System.out.println("toto");
 		}
-		
+
 		return redirect;
 
 	}
