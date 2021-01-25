@@ -47,5 +47,23 @@
 	</nav>
 	<img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
+	<div class="row" style="margin-top: 15px">
+		<div class="container">
+			<div class="col-sm-6 offset-sm-3">
+				<div class="card text-center">
+					<div class="card-header">
+						<h3 class="font-weight-bold">Demande de réservation</h3>
+					</div>
+					<div class="card-body">
+						<div class="text-center" th:each="topo : ${topos}">
+							<a class="btn btn-success"
+								th:href="@{'/demandedereservation/'+${topo.id}}"> Faire une
+								demande réservation</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
