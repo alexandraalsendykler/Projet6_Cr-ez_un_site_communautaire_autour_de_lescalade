@@ -66,6 +66,25 @@
 					</p>
 				</div>
 			</div>
+			<div  th:unless="${session.isEmpty()}">
+			<th:block th:if="${session.user.membre}">
+				<div class="card" style="margin-top: 15px;">
+					<div class="card-body">
+						<h5 class="card-title">Membre officiel Les amis de l'escalade
+							?</h5>
+						<form method="post" th:action="@{savesite}" th:object="${sites}">
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" th:field="*{officiel}"
+									id="OfficielLesAmisdelescalades"> <label class="form-check-label"
+									for="officielLesAmisdelescalade">Officiel Les amis de l'escalade</label>
+							</div><br>
+							<button type="submit" class="btn btn-primary">Envoyer</button>
+						</form>
+					</div>
+				</div>
+			</th:block></div>
+
+
 			<div class="card" style="margin-top: 15px;">
 				<div class="card-body">
 					<h5 class="card-title">Commentaires</h5>

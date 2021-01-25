@@ -47,7 +47,7 @@
 <img class=" img-fluid" th:src="@{/img/montagne.jpg}" alt="">
 
 <div class="row" style="margin-top: 15px">
-	<div class="offset-sm-3 col-sm-6">
+	<div class="offset-sm-2 col-sm-8">
 		<div class="card border-dark">
 			<div class="card-body">
 				<div class="card text-center">
@@ -61,6 +61,7 @@
 							<th>Description</th>
 							<th>Date de parution</th>
 							<th>Disponibilité</th>
+							<th>Réserver</th>
 
 						</tr>
 						<tr th:each="topo : ${topos}">
@@ -69,9 +70,17 @@
 							<td th:text="${topo.region}">Région</td>
 							<td th:text="${topo.description}">Description</td>
 							<td th:text="${topo.dateParution}">Date de parution</td>
-							<td th:if="${topo.disponibilite == true}">Oui</td>
-							<td th:unless="${topo.disponibilite == true}">Non</td>
-							<td>
+							<th:block th:if="${topo.disponibilite == true}">
+								<td>Oui</td>
+								<td><a class="btn btn-success"
+									th:href="@{'/reserveruntopo/'+${topo.id}}"> Réserver</a>
+								<td>
+							</th:block>
+							<th:block th:unless="${topo.disponibilite == true}">
+								<td>Non</td>
+								<td><button class="btn btn-danger" disabled>Non
+										réservable</button></td>
+							</th:block>
 						</tr>
 					</table>
 
