@@ -108,23 +108,6 @@
 
 													<div class="form-group">
 
-														<label for="text">Site</label><br />
-
-														<th:block th:each="site : ${sitesAll}">
-															<div class="form-check  form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	name="sites" th:value="${site.id}"
-																	th:field="*{sites}" />
-																<label class="form-check-label"
-																	th:text="${site.nom}"></label>
-															</div>
-														</th:block><br /><br />
-														<a class="btn  btn-dark" href="/ajouternouveausite">Ajouter un
-															nouveau site<a />
-													</div>
-
-													<div class="form-group">
-
 														<label for="text">Nom du topo</label> <input type="text"
 															class="form-control" id="text"
 															aria-describedby="nomSiteEscalade" th:field="*{nom}">
@@ -156,6 +139,20 @@
 														<label for="text">Date de Parution</label> <input type="date"
 															class="form-control" id="text"
 															aria-describedby="DateParution" th:field="*{dateParution}">
+													</div>
+													<div class="form-group">
+
+														<label for="text">Site</label><br />
+
+														<th:block th:each="site : ${sitesAll}">
+															<div class="form-check  form-check-inline">
+																<input class="form-check-input" type="checkbox"
+																	name="sites" th:value="${site.id}"
+																	th:field="*{sites}" />
+																<label class="form-check-label"
+																	th:text="${site.nom}"></label>
+															</div>
+														</th:block>
 													</div>
 													<div class="form-group">
 														<button type="submit" class="btn btn-primary">Envoyer</button>
