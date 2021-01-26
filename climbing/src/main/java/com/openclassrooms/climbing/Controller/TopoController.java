@@ -19,6 +19,7 @@ import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 import com.openclassrooms.climbing.repository.ReservationRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
+import com.openclassrooms.climbing.service.IReservationService;
 import com.openclassrooms.climbing.service.ISiteService;
 import com.openclassrooms.climbing.service.ITopoService;
 
@@ -30,6 +31,8 @@ public class TopoController {
 	private TopoRepository topoRepository;
 	@Autowired
 	private ITopoService topoService;
+	@Autowired
+	private IReservationService reservationService;
 	@Autowired
 	private ReservationRepository reservationRepository;
 
@@ -65,4 +68,16 @@ public class TopoController {
 		reservationRepository.save(reservation);
 		return ("redirect:/touslestopos");
 	}
+	@RequestMapping(path="/confirmerreservation/{id}")
+	public String confirmerreservation(Model model, @PathVariable("id") Integer id) {
+		Optional<Reservation> reservations= reservationService.findById(id);
+		Reservation reservation = reservations.get();
+		reservation.setStatut("confirmer");
+		reservationRepository.save(reservation);
+		Topo topo = reservation.getTopos();
+		topo.setDisponibilite(false);
+		topoRepository.save(topo);
+		return ("confirmerreservation");
+	}
+	
 }
