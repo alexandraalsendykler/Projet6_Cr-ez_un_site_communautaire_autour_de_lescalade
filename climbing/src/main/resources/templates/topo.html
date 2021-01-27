@@ -66,6 +66,13 @@
 				<p class="card-text">
 					<strong>Description : </strong><span th:text="${topo.description}"></span>
 				</p>
+				<th:block th:unless="${session.isEmpty()}">
+					<p class="card-text"
+						th:if="${topo.disponibilite == false and session.user.id == topo.utilisateur.id}">
+						<a th:href="@{'/topodisponible/'+${topo.id}}"
+							class="btn btn-success btn-sm">Rendre disponible à nouveau</a>
+					</p>
+				</th:block>
 			</div>
 		</div>
 	</div>
@@ -75,23 +82,32 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-sm-12">
-						<h5 class="card-title">Réservation de <span  th:text="${reservation.utilisateur.pseudo}"></span></h5>
+						<h5 class="card-title">
+							Réservation de <span th:text="${reservation.utilisateur.pseudo}"></span>
+						</h5>
 					</div>
-					
+
 				</div>
 
 				<div class="row">
 					<div class="col-sm-4">
-					
+
 						<strong>Statut : </strong><span th:text="${reservation.statut}"></span>
 					</div>
 					<div class="offset-sm-4 col-sm-4">
 						<th:block th:unless="${session.isEmpty()}">
 							<div
 								th:if="${session.user.id == topo.utilisateur.id and reservation.statut == 'demande'}">
-								<a th:href="@{'/confirmerreservation/'+${reservation.id}}"
-									class="btn btn-success btn-sm"> Confirmer la demande de
-									réservation </a>
+								<th:block th:if="${topo.disponibilite == true}">
+									<a th:href="@{'/confirmerreservation/'+${reservation.id}}"
+										class="btn btn-success btn-sm"> Confirmer la demande de
+										réservation </a>
+								</th:block>
+								<th:block th:unless="${topo.disponibilite == true}">
+									<a th:href="@{'/confirmerreservation/'+${reservation.id}}"
+										class="btn btn-secondary btn-sm disabled"> Confirmer la
+										demande de réservation </a>
+								</th:block>
 							</div>
 						</th:block>
 					</div>

@@ -79,5 +79,12 @@ public class TopoController {
 		topoRepository.save(topo);
 		return ("confirmerreservation");
 	}
-	
+	@RequestMapping(path = "/topodisponible/{id}")
+	public String topodisponible(Model model, @PathVariable("id") Integer id, HttpSession session) {
+		Optional<Topo> topos = topoService.findById(id);
+		Topo topo = topos.get();
+		topo.setDisponibilite(true);
+		topoRepository.save(topo);
+		return ("redirect:/topo/"+ String.valueOf(id));
+	}
 }
