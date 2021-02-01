@@ -9,10 +9,9 @@ import javax.persistence.Id;
 @Entity
 public class Utilisateur {
 
-	// attributs utilisateur
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idUtilisateur") // permet d'écrire
+	@Column(name = "idUtilisateur") 
 	private Integer id;
 	private String pseudo;
 	private Boolean membre;

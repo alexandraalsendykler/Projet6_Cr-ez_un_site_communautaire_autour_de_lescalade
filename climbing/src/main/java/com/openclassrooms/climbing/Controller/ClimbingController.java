@@ -25,8 +25,7 @@ import com.openclassrooms.climbing.model.Voie;
 import com.openclassrooms.climbing.repository.*;
 import com.openclassrooms.climbing.service.ISiteService;
 
-@Controller // suit le formalisme "rest" c'est un pattern pour faire communiquer des
-			// programmes ensembles
+@Controller 
 
 public class ClimbingController {
 
