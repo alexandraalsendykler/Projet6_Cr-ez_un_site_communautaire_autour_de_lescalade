@@ -92,7 +92,7 @@ public class SiteController {
 		return ("site");
 	}
 
-	@PostMapping("/savesite")
+	@PostMapping("/savesite") 
 	public String savesSite(@ModelAttribute Site sites, Model model) {
 
 		 siteRepository.save(sites);
@@ -101,6 +101,8 @@ public class SiteController {
 		 return "redirect:/site/"+String.valueOf(id); //ne convertit pas de string
 		// vers int
 	}
+	// créé une autre méthode par exemple updateofficielstatus qui va récupérer en entrer une valeur string
+	// case à cocher et lui transmettre l'id aussi // get l'objet entier, & modifier le statut et save l'objet dans site.repository
 
 	@PostMapping("/savecommentaire/{id}")
 	public ModelAndView saveCommentaire(@ModelAttribute Commentaire commentaire, Model model,
@@ -175,7 +177,7 @@ public class SiteController {
 			newvoies = voies;
 		}
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
-		voie.setSecteurs(secteur);
+		voie.setSecteurs(secteur); // voir ligne site.getSecteurs().add(secteur) soit la ligne 149
 		session.setAttribute("voie", voie);
 		newvoies.add(voie);
 		session.setAttribute("voies", newvoies);
