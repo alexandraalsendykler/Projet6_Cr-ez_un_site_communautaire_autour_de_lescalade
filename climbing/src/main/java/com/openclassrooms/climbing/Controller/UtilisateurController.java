@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.openclassrooms.climbing.model.Reservation;
 import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
+import com.openclassrooms.climbing.repository.ReservationRepository;
 import com.openclassrooms.climbing.repository.SiteRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.repository.UserRepository;
@@ -33,6 +35,8 @@ public class UtilisateurController<User> {
 	private TopoRepository topoRepository;
 	@Autowired
 	private SiteRepository siteRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
 	
 	@GetMapping(value = "/profil")
 	public String profilUtilisateur(Model model, HttpSession session) {
@@ -40,6 +44,8 @@ public class UtilisateurController<User> {
 		model.addAttribute("connectedUser", connectedUser);
 		System.out.println(connectedUser.getPseudo());
 		Iterable<Topo> topos = topoRepository.findByUtilisateur(connectedUser);
+		Iterable<Reservation> reservations = reservationRepository.findByUtilisateur(connectedUser);
+		model.addAttribute("reservations", reservations);
 		model.addAttribute("topos", topos);
 		model.addAttribute("newTopo", new Topo());
 		Iterable<Site> site = siteRepository.findAll();

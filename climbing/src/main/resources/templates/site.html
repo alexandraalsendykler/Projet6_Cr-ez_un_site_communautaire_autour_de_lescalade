@@ -80,7 +80,9 @@
 								th:object="${sites}">
 								<!--peut-être à modifier ou virer uniquement le th:object pas le début, le début pas envoyer sur le @savesite mais sur un autre lien-->
 								<div class="form-check">
-									<!-- 							ajouter imput hidden id  -->
+								<input type="hidden" class="form-check-input"
+										th:field="*{id}" id="OfficielLesAmisdelescalades">
+
 									<input type="checkbox" class="form-check-input"
 										th:field="*{officiel}" id="OfficielLesAmisdelescalades">
 									<label class="form-check-label"
@@ -88,7 +90,7 @@
 										l'escalade</label>
 								</div>
 								<br>
-								<button type="submit" class="btn btn-primary">Envoyer</button>
+								<input type="submit" class="btn btn-primary" value="envoyer">
 							</form>
 						</div>
 					</div>

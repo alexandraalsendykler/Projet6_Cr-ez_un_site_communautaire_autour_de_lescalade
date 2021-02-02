@@ -95,8 +95,12 @@ public class SiteController {
 	@PostMapping("/savesite") 
 	public String savesSite(@ModelAttribute Site sites, Model model) {
 
-		 siteRepository.save(sites);
+		
 		 int id = sites.getId();
+		 Optional<Site> site = siteService.findById(id);
+		 Site updateSite = site.get();
+		 updateSite.setOfficiel(sites.getOfficiel());
+		 siteRepository.save(updateSite);
 	//	return new ModelAndView("redirect:/sitesescalades");
 		 return "redirect:/site/"+String.valueOf(id); //ne convertit pas de string
 		// vers int
