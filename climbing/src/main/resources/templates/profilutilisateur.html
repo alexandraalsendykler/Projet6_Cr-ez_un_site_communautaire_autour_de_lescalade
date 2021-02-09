@@ -77,7 +77,7 @@
                      </li>
                   </ul>
                </td>
-               <td th:text="${topo.dateParution}">Date de parution</td>
+               <td th:text="${#dates.format(topo.dateParution, 'dd/MM/yyyy')}">Date de parution</td>
                <td th:text="${#lists.size(topo.reservations.?[statut == 'demande'])}" ></td>
             </tr>
          </table>
