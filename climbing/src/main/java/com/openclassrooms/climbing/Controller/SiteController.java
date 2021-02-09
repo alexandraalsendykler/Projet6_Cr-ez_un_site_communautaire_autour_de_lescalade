@@ -7,8 +7,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +26,13 @@ import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 import com.openclassrooms.climbing.model.Voie;
+import com.openclassrooms.climbing.repository.CommentaireRepository;
+import com.openclassrooms.climbing.repository.LongueurRepository;
 import com.openclassrooms.climbing.repository.SecteurRepository;
 import com.openclassrooms.climbing.repository.SiteRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.repository.VoieRepository;
 import com.openclassrooms.climbing.service.ISiteService;
-import com.openclassrooms.climbing.repository.CommentaireRepository;
-import com.openclassrooms.climbing.repository.LongueurRepository;
 
 @Controller
 @SessionAttributes
@@ -92,21 +90,17 @@ public class SiteController {
 		return ("site");
 	}
 
-	@PostMapping("/savesite") 
+	@PostMapping("/savesite")
 	public String savesSite(@ModelAttribute Site sites, Model model) {
 
-		
-		 int id = sites.getId();
-		 Optional<Site> site = siteService.findById(id);
-		 Site updateSite = site.get();
-		 updateSite.setOfficiel(sites.getOfficiel());
-		 siteRepository.save(updateSite);
-	//	return new ModelAndView("redirect:/sitesescalades");
-		 return "redirect:/site/"+String.valueOf(id); //ne convertit pas de string
-		// vers int
+		int id = sites.getId();
+		Optional<Site> site = siteService.findById(id);
+		Site updateSite = site.get();
+		updateSite.setOfficiel(sites.getOfficiel());
+		siteRepository.save(updateSite);
+
+		return "redirect:/site/" + String.valueOf(id);
 	}
-	// créé une autre méthode par exemple updateofficielstatus qui va récupérer en entrer une valeur string
-	// case à cocher et lui transmettre l'id aussi // get l'objet entier, & modifier le statut et save l'objet dans site.repository
 
 	@PostMapping("/savecommentaire/{id}")
 	public ModelAndView saveCommentaire(@ModelAttribute Commentaire commentaire, Model model,
@@ -130,7 +124,6 @@ public class SiteController {
 	public String ajouternouveausecteur(@ModelAttribute Site site, Model model, HttpSession session) {
 
 		site.setOfficiel(false);
-		// siteRepository.save(site);
 		session.setAttribute("site", site);
 		model.addAttribute("secteur", new Secteur());
 		return ("/ajouternouveausecteur");
@@ -150,7 +143,7 @@ public class SiteController {
 		}
 
 		Site site = (Site) session.getAttribute("site");
-		site.getSecteurs().add(secteur); // on ajoute les secteur à la liste des secteurs du site
+		site.getSecteurs().add(secteur); 
 		secteur.setSite(site);
 		newsecteurs.add(secteur);
 
@@ -181,7 +174,7 @@ public class SiteController {
 			newvoies = voies;
 		}
 		Secteur secteur = (Secteur) session.getAttribute("secteur");
-		voie.setSecteurs(secteur); // voir ligne site.getSecteurs().add(secteur) soit la ligne 149
+		voie.setSecteurs(secteur); 
 		session.setAttribute("voie", voie);
 		newvoies.add(voie);
 		session.setAttribute("voies", newvoies);
@@ -205,11 +198,10 @@ public class SiteController {
 			if (longueurs != null) {
 				longueurRepository.saveAll(longueurs);
 			}
-			
-			redirect = "confirmationajout";
-			return  redirect;
-		}
 
+			redirect = "confirmationajout";
+			return redirect;
+		}
 
 		return redirect;
 	}

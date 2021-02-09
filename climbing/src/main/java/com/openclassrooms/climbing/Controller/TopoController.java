@@ -1,6 +1,5 @@
 package com.openclassrooms.climbing.Controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -13,14 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.openclassrooms.climbing.model.Reservation;
-import com.openclassrooms.climbing.model.Secteur;
-import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 import com.openclassrooms.climbing.repository.ReservationRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.service.IReservationService;
-import com.openclassrooms.climbing.service.ISiteService;
 import com.openclassrooms.climbing.service.ITopoService;
 
 @Controller

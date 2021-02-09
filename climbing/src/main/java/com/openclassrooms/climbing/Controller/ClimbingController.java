@@ -1,17 +1,13 @@
 package com.openclassrooms.climbing.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.openclassrooms.climbing.model.Commentaire;
 import com.openclassrooms.climbing.model.Longueur;
@@ -22,8 +18,14 @@ import com.openclassrooms.climbing.model.Site;
 import com.openclassrooms.climbing.model.Topo;
 import com.openclassrooms.climbing.model.Utilisateur;
 import com.openclassrooms.climbing.model.Voie;
-import com.openclassrooms.climbing.repository.*;
-import com.openclassrooms.climbing.service.ISiteService;
+import com.openclassrooms.climbing.repository.CommentaireRepository;
+import com.openclassrooms.climbing.repository.LongueurRepository;
+import com.openclassrooms.climbing.repository.ReservationRepository;
+import com.openclassrooms.climbing.repository.SecteurRepository;
+import com.openclassrooms.climbing.repository.SiteRepository;
+import com.openclassrooms.climbing.repository.TopoRepository;
+import com.openclassrooms.climbing.repository.UserRepository;
+import com.openclassrooms.climbing.repository.VoieRepository;
 
 @Controller 
 
@@ -79,19 +81,4 @@ public class ClimbingController {
 	public String aPropos(Model model) {
 		return ("aPropos");
 	}
-
-	@GetMapping(value = "nouscontacter")
-	public String nouscontacter(Model model) {
-		model.addAttribute("nouscontacter", new NousContacter());
-
-		return ("nouscontacter");
-	}
-
-	@PostMapping("/nouscontacter")
-	public ModelAndView nousContacterSucess(@ModelAttribute NousContacter nouscontacter, ModelMap model) {
-		model.addAttribute("envoyer", true);
-
-		return new ModelAndView("redirect:/nouscontacter", model);
-	}
-
 }
