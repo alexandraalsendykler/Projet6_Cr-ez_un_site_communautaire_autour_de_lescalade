@@ -77,17 +77,16 @@
 								th:object="${sites}">
 								<!--peut-être à modifier ou virer uniquement le th:object pas le début, le début pas envoyer sur le @savesite mais sur un autre lien-->
 								<div class="form-check">
-								<input type="hidden" class="form-check-input"
-										th:field="*{id}" id="OfficielLesAmisdelescalades">
-
-									<input type="checkbox" class="form-check-input"
+									<input type="hidden" class="form-check-input" th:field="*{id}"
+										id="OfficielLesAmisdelescalades"> <input
+										type="checkbox" class="form-check-input"
 										th:field="*{officiel}" id="OfficielLesAmisdelescalades">
 									<label class="form-check-label"
 										for="officielLesAmisdelescalade">Officiel Les amis de
 										l'escalade</label>
 								</div>
-								<br>
-								<input type="submit" class="btn btn-primary" value="envoyer">
+								<br> <input type="submit" class="btn btn-primary"
+									value="envoyer">
 							</form>
 						</div>
 					</div>
@@ -99,7 +98,18 @@
 				<div class="card-body">
 					<h5 class="card-title">Commentaires</h5>
 					<ul th:each="commentaire:${site.commentaires}">
-						<li th:text="${commentaire.contenu}"></li>
+						<li>
+							<div th:text="${commentaire.contenu}"></div>
+							<div th:unless="${session.isEmpty()}">
+								<th:block th:if="${session.user.membre}">
+								<br>
+									<a th:href="@{'/modifiercommentaire/'+${commentaire.id}}"
+										class="btn btn-primary btn-sm">Modifier</a>
+									<a th:href="@{'/supprimercommentaire/'+${commentaire.id}}"
+										class="btn btn-danger btn-sm">Supprimer</a>
+								</th:block>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>

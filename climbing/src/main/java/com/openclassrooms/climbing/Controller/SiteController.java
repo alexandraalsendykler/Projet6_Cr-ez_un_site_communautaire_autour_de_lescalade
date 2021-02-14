@@ -32,6 +32,7 @@ import com.openclassrooms.climbing.repository.SecteurRepository;
 import com.openclassrooms.climbing.repository.SiteRepository;
 import com.openclassrooms.climbing.repository.TopoRepository;
 import com.openclassrooms.climbing.repository.VoieRepository;
+import com.openclassrooms.climbing.service.ICommentaireService;
 import com.openclassrooms.climbing.service.ISiteService;
 
 @Controller
@@ -42,7 +43,8 @@ public class SiteController {
 	private SiteRepository siteRepository;
 	@Autowired
 	private ISiteService siteService;
-
+	@Autowired
+	private ICommentaireService commentaireService;
 	@Autowired
 	private TopoRepository topoRepository;
 	@Autowired
@@ -111,6 +113,47 @@ public class SiteController {
 		commentaire.setSite(site.get());
 		commentaireRepository.save(commentaire);
 		return new ModelAndView("redirect:/site/{id}");
+
+	}
+	
+	@PostMapping("/editcommentaire")
+	public String editCommentaire(@ModelAttribute Commentaire commentaire, Model model,
+			 HttpSession session) {
+		
+		
+		int id = commentaire.getId();
+		Optional<Commentaire> commentaires = commentaireService.findById(id);
+		Commentaire updateCommentaire = commentaires.get();
+		updateCommentaire.setContenu(commentaire.getContenu());
+		commentaireRepository.save(updateCommentaire);
+		Site site = updateCommentaire.getSite();
+		int idSite = site.getId();
+		return "redirect:/site/" + String.valueOf(idSite);
+		
+
+	}
+	
+	
+	
+	@RequestMapping("/modifiercommentaire/{id}")
+	public String modifierCommentaire( Model model,
+			@PathVariable("id") Integer id, HttpSession session) {
+		Optional <Commentaire> commentaire = commentaireService.findById(id);
+		Commentaire commentaireEdit = commentaire.get();
+		model.addAttribute("commentaire", commentaireEdit);
+		return "modifieruncommentaire";
+
+	}
+	
+	@RequestMapping("/supprimercommentaire/{id}")
+	public String supprimerCommentaire(Model model,
+			@PathVariable("id") Integer id, HttpSession session) {
+		
+		Optional <Commentaire> commentaire = commentaireService.findById(id);
+		Site site = commentaire.get().getSite();
+		int idSite = site.getId();
+		commentaireRepository.deleteById(id);
+		return ("redirect:/site/"+idSite);
 
 	}
 
