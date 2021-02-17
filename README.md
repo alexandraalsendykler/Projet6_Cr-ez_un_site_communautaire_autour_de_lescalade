@@ -8,9 +8,17 @@
 
 3) Placer dans le répertoire du projet Maven, là où se trouve le pom.xml. Lancer la commande mvn eclipse:eclipse.
 
-4) Importer le projet en faisant : Import > Existing Maven Projects > Browse > Select file > Finish
+4) Importer le projet en faisant : Import > Existing Maven Projects > Browse > Select file > Finish 
 
-5) Compiler
+5) Ouvrir le fichier application.properties et rentrer les données ci-dessous :
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/climbing
+spring.datasource.username=postgres
+spring.datasource.password= <mot de passe>
+spring.jpa.show-sql=true
+server.port=9001
+
+6) Compiler
 
 6) Cliquer sur l'icone "run"
 
