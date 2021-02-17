@@ -12,11 +12,11 @@
 
 5) Ouvrir le fichier application.properties et rentrer les données ci-dessous :
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/climbing
-spring.datasource.username=postgres
-spring.datasource.password= <mot de passe>
-spring.jpa.show-sql=true
-server.port=9001
+1.spring.datasource.url=jdbc:postgresql://localhost:5432/climbing
+2.spring.datasource.username=postgres
+3.spring.datasource.password= <mot de passe>
+4.spring.jpa.show-sql=true
+5.server.port=9001
 
 6) Compiler
 
