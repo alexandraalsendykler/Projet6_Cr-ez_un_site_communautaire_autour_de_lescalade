@@ -8,7 +8,7 @@
 
 3) Placer dans le répertoire du projet Maven, là où se trouve le pom.xml. Lancer la commande mvn eclipse:eclipse.
 
-4) Importer le projet en faisant : Import > Existing Maven Projects > Browse > Selectionner le fichier concerné > finish
+4) Importer le projet en faisant : Import > Existing Maven Projects > Browse > Select file > Finish
 
 5) Compiler
 
