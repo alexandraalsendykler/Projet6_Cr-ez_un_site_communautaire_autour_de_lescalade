@@ -61,11 +61,11 @@ public class SiteController {
 	public String rechercheSites(Model model, @RequestParam String searchsites,
 			@RequestParam(required = false) Boolean officiel) {
 		if (officiel != null) {
-			List<Site> sites = siteRepository.findByNomContainingAndOfficiel(searchsites, officiel);
+			List<Site> sites = siteRepository.findByRegionContainingOrNomContainingAndOfficiel(searchsites,searchsites, officiel);
 			model.addAttribute("sites", sites);
 		} else {
 
-			List<Site> sites = siteRepository.findByNomContaining(searchsites);
+			List<Site> sites = siteRepository.findByRegionContainingOrNomContaining(searchsites,searchsites);
 			model.addAttribute("sites", sites);
 		}
 

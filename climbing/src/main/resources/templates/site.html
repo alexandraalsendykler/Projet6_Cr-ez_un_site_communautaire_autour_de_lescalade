@@ -102,7 +102,7 @@
 							<div th:text="${commentaire.contenu}"></div>
 							<div th:unless="${session.isEmpty()}">
 								<th:block th:if="${session.user.membre}">
-								<br>
+									<br>
 									<a th:href="@{'/modifiercommentaire/'+${commentaire.id}}"
 										class="btn btn-primary btn-sm">Modifier</a>
 									<a th:href="@{'/supprimercommentaire/'+${commentaire.id}}"
@@ -144,34 +144,33 @@
 					<h5 class="card-title">Secteur</h5>
 
 					<h6 class="card-subtitle mb-2 text-muted" th:text="${secteur.nom}">nom</h6>
-					<p class="card-text">
+					<div class="card-text">
 						<strong>Voies : </strong>
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Nom</th>
-								<th scope="col">Cotation</th>
-								<th scope="col">Hauteur</th>
-								<th scope="col">Nombre de point</th>
-								<th scope="col">Longueur</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="voie: ${secteur.voies}">
-								<td th:text="${voie.nom}" scope="row"></td>
-								<td th:text="${voie.cotation}"></td>
-								<td th:text="${voie.hauteur}"></td>
-								<td th:text="${voie.nombredepoint}"></td>
-								<td>
-									<ul th:each="longueur: ${voie.longueurs}">
-										<li th:text="${longueur.cotation}"></li>
-									</ul>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					</p>
-
+						<table class="table table-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Nom</th>
+									<th scope="col">Cotation</th>
+									<th scope="col">Hauteur</th>
+									<th scope="col">Nb de point</th>
+									<th scope="col">Longueur</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="voie: ${secteur.voies}">
+									<td th:text="${voie.nom}" scope="row"></td>
+									<td th:text="${voie.cotation}"></td>
+									<td th:text="${voie.hauteur}"></td>
+									<td th:text="${voie.nombredepoint}"></td>
+									<td>
+										<ul th:each="longueur: ${voie.longueurs}">
+											<li th:text="${longueur.cotation}"></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

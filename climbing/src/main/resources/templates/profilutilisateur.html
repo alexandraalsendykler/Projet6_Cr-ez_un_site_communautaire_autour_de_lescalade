@@ -51,7 +51,7 @@
       </div>
       <div class="card-body">
       <div class="card text-center">
-         <table class="table">
+         <table class="table table-sm table-responsive">
             <tr>
                <th>nom</th>
                <th>description</th>
@@ -59,7 +59,7 @@
                <th>disponibilité</th>
                <th>site</th>
                <th>date de parution</th>
-               <th>Nombre de demande</th>
+               <th>Nb de demande</th>
             </tr>
             <tr th:each="topo : ${topos}">
                <td><a th:href="@{'/topo/'+${topo.id}}"
@@ -92,7 +92,7 @@
          </div>
        <div class="card-body">
          <div class="card text-center">
-         <table class="table">
+         <table class="table table-sm">
             <tr>
                <th>Topo</th>
                <th>statut</th>

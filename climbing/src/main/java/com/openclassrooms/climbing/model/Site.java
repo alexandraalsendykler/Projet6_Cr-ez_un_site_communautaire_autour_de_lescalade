@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -35,6 +37,12 @@ public class Site {
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idSite")
 	private List<Secteur> secteurs = new ArrayList<>(); 
+	
+
+
+	@ManyToMany
+	@JoinTable(name = "topo_site", joinColumns = @JoinColumn(name = "id_site"), inverseJoinColumns = @JoinColumn(name = "id_topo"))
+	private List<Topo> topos;
 
 	public Integer getId() {
 		return id;
@@ -100,4 +108,11 @@ public class Site {
 		this.commentaires = commentaires;
 	}
 
+	public List<Topo> getTopos() {
+		return topos;
+	}
+
+	public void setTopos(List<Topo> topos) {
+		this.topos = topos;
+	}
 }
