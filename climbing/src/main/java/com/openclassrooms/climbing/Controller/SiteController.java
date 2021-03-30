@@ -132,8 +132,7 @@ public class SiteController {
 		
 
 	}
-	
-	
+
 	
 	@RequestMapping("/modifiercommentaire/{id}")
 	public String modifierCommentaire( Model model,

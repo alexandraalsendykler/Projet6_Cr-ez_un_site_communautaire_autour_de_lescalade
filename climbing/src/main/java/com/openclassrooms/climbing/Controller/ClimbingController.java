@@ -3,15 +3,9 @@ package com.openclassrooms.climbing.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.openclassrooms.climbing.model.Commentaire;
 import com.openclassrooms.climbing.model.Longueur;
-import com.openclassrooms.climbing.model.NousContacter;
 import com.openclassrooms.climbing.model.Reservation;
 import com.openclassrooms.climbing.model.Secteur;
 import com.openclassrooms.climbing.model.Site;
